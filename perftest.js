@@ -22,7 +22,7 @@
             var getEntriesByName = performance.getEntriesByName || performance.webkitGetEntriesByName || performance.msGetEntriesByName || performance.mozGetEntriesByName;
 
             window.perfTest = function (fn, times) {
-                var rand = new Date().valueOf();
+                var rand = +new Date();
 
                 //开始时间
                 mark.call(performance, 'start' + rand);
@@ -45,12 +45,12 @@
     //不支持performance.mark
     window.perfTest = function (fn, times) {
         //开始时间
-        var start = new Date().valueOf();
+        var start = +new Date();
         for (var i = 0; i < times; i++) {
             fn();
         }
         //结束时间
-        var end = new Date().valueOf();
+        var end = +new Date();
 
         logPerfInfo(fn, times, start, end);
     };
