@@ -190,8 +190,7 @@
 
     //CommonJS
     if (typeof exports === 'object') {
-        module.exports = hex_md5;
-        return;
+        return module.exports = hex_md5;
     }
 
     //添加到全局对象

@@ -45,8 +45,7 @@
 
     //CommonJS
     if (typeof exports === 'object') {
-        module.exports = query;
-        return;
+        return module.exports = query;
     }
 
     //添加到全局

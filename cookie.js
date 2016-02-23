@@ -53,8 +53,7 @@
 
     //CommonJS
     if (typeof exports === 'object') {
-        module.exports = cookie;
-        return;
+        return module.exports = cookie;
     }
 
     //添加到全局

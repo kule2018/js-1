@@ -79,8 +79,7 @@
 
     //CommonJS
     if (typeof exports === 'object') {
-        module.exports = share;
-        return;
+        return module.exports = share;
     }
 
     //添加到全局

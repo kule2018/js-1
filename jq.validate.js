@@ -16,6 +16,7 @@
             $msg = opts.$msg,
             validated = opts.validated,
             unValidated = opts.unValidated,
+            isShowMsg = opts.isShowMsg,
             isFocus = opts.isFocus;
 
         //验证不通过函数
@@ -23,9 +24,10 @@
             //验证不通过回调
             typeof unValidated === 'function' && unValidated(msg);
             //显示验证信息
-            $msg ? $msg.text(msg) : alert(msg);
+            isShowMsg && ($msg ? $msg.text(msg) : alert(msg));
             //焦点
-            isFocus && $input.focus();
+            isFocus && $input[0].focus();
+            $input.addClass('error');
         }
 
         var rs = rsType === 'object' ? {} : [];
@@ -81,6 +83,8 @@
         validated  : null,
         //验证不通过回调
         unValidated: null,
+        //是否显示提示信息
+        isShowMsg  : true,
         //是否焦点(默认为移动端不焦点,pc端焦点)
         isFocus    : !/(iPhone|iPod|android)/i.test(navigator.userAgent)
     };
@@ -98,7 +102,7 @@
 
             //变量
             var $this = $(this),
-                $inputs = $this.find(inputSel);
+                $inputs = $this.find(inputSel).not('.not');
 
             //初始化函数
             function init() {

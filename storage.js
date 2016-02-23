@@ -61,8 +61,7 @@
 
     //CommonJS
     if (typeof exports === 'object') {
-        module.exports = storage;
-        return;
+        return module.exports = storage;
     }
 
     //添加到全局

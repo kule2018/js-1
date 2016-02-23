@@ -206,8 +206,7 @@
 
     //CommonJS
     if (typeof exports === 'object') {
-        module.exports = jsonp;
-        return;
+        return module.exports = jsonp;
     }
 
     //添加到全局

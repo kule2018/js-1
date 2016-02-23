@@ -1140,8 +1140,7 @@
 
     //CommonJS
     if (typeof exports === 'object') {
-        module.exports = QRCode;
-        return;
+        return module.exports = QRCode;
     }
 
     //添加到全局对象
