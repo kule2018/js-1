@@ -37,7 +37,8 @@
         var getItem = (function () {
             var search = location.search.slice(1);
             return function (key) {
-                return parse(search)[key];
+                var obj = parse(search);
+                return obj && obj[key];
             }
         })();
 
