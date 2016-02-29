@@ -1,22 +1,28 @@
 ﻿(function (window) {
 
+    var encodeURIComponent = window.encodeURIComponent,
+        decodeURIComponent = window.decodeURIComponent;
+
     //参数操作对象
     var query = (function () {
 
         //将对象转为参数字符函数
-        function stringify(obj) {
+        function stringify(obj, isNotnull) {
             if (typeof obj !== 'object') return;
 
             var array = [];
             for (var p in obj) {
-                array.push(p + '=' + encodeURIComponent(obj[p]));
+                var val = obj[p];
+
+                //是否只拼接非空
+                isNotnull ? val && array.push(p + '=' + encodeURIComponent(val)) : array.push(p + '=' + encodeURIComponent(val));
             }
             return array.join('&');
         }
 
         //将参数字符转为对象函数
         function parse(qstr) {
-            if (typeof qstr !== 'string') return;
+            if (typeof qstr !== 'string' || qstr.length === 0) return;
 
             var obj = {},
                 kvs = qstr.split('&');
