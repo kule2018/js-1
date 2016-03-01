@@ -160,6 +160,7 @@
 
                 //form
                 var formId = opts.formId, formEl;
+                //带file的form提交
                 if (formId) {
                     formEl = document.getElementById(formId);
                     formEl.enctype = 'multipart/form-data';
