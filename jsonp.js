@@ -148,7 +148,7 @@
                 //响应函数
                 msgcb[ifrId] = function (rs) {
                     //回调
-                    callback(rs, opts);
+                    callback(JSON.parse(rs), opts);
 
                     //释放回调函数
                     msgcb[ifrId] = null;
