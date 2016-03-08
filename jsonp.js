@@ -169,7 +169,8 @@
                     formEl = document.createElement('form');
                     formEl.style.display = 'none';
                 }
-                formEl.action = opts.url + '?jsonp=' + ifrId;
+                var url = opts.url;
+                formEl.action = url + (url.indexOf('?') !== -1 ? '&' : '?') + 'jsonp=' + ifrId;
                 formEl.method = opts.method;
                 formEl.target = ifrId;
                 //遍历data,加到form
@@ -184,7 +185,7 @@
                 }
 
                 //提交
-                bodyEl.appendChild(formEl);
+                !formId && bodyEl.appendChild(formEl);
                 formEl.submit();
             };
 
