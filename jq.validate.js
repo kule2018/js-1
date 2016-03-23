@@ -33,6 +33,7 @@
             validated = opts.validated,
             unValidated = opts.unValidated,
             isShowMsg = opts.isShowMsg,
+            fieldNullable = opts.fieldNullable,
             isFocus = opts.isFocus;
 
         //验证不通过函数
@@ -46,7 +47,7 @@
             $input.addClass('error');
         }
 
-        var rs = rsType === 'object' ? {} : [];
+        var rs, isRsObj = rsType === 'object';
         //遍历输入元素
         for (var i = 0, len = $inputs.length; i < len; i++) {
             var $input = $inputs.eq(i),
@@ -71,8 +72,13 @@
                 return onError(ptn.txt + '格式无效', $input);
             }
 
+            //如果字段不能为空时,值为空就跳过保存值
+            if (!fieldNullable && value === '') {
+                continue;
+            }
             //保存值
-            rsType === 'object' ? field && (rs[field] = value) : rs.push(value);
+            rs || (rs = isRsObj ? {} : []);
+            isRsObj ? field && (rs[field] = value) : rs.push(value);
         }
         //验证通过回调
         typeof validated === 'function' && validated(rs);
@@ -81,19 +87,21 @@
     };
     $.validate.defaults = {
         //输入元素
-        $inputs    : null,
+        $inputs      : null,
         //结果类型(默认为对象,否则为数组)
-        rsType     : 'object',
+        rsType       : 'object',
         //显示信息元素
-        $msg       : null,
+        $msg         : null,
         //验证通过回调
-        validated  : null,
+        validated    : null,
         //验证不通过回调
-        unValidated: null,
+        unValidated  : null,
         //是否显示提示信息
-        isShowMsg  : true,
+        isShowMsg    : true,
+        //字段可为空
+        fieldNullable: true,
         //是否焦点(默认为移动端不焦点,pc端焦点)
-        isFocus    : !/(iPhone|iPod|android)/i.test(navigator.userAgent)
+        isFocus      : !/(iPhone|iPod|android)/i.test(navigator.userAgent)
     };
     //判断是否为表单元素函数
     var isFormEl = $.validate.isFormEl = function (el) {
