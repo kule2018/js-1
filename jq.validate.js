@@ -52,8 +52,8 @@
         for (var i = 0, len = $inputs.length; i < len; i++) {
             var $input = $inputs.eq(i),
                 inputEl = $input[0],
-            //表单元素读取value属性,否则读取text
-                value = isFormEl(inputEl) ? inputEl.value : $input.text(),
+            //优先读取data-value属性,否则表单元素读取value属性,否则读取text
+                value = $input.filter('[data-value]').length > 0 ? $input.attr('data-value') : (isFormEl(inputEl) ? inputEl.value : $input.text()),
                 type = $input.attr('type'),
                 msg = $input.attr('data-msg'),
                 field = inputEl.id || $input.attr('data-field');
