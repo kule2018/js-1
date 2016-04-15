@@ -118,7 +118,7 @@
             c = safe_add(c, oldc);
             d = safe_add(d, oldd);
         }
-        return Array(a, b, c, d);
+        return [a, b, c, d];
 
     }
 
@@ -167,7 +167,7 @@
      * If chrsz is ASCII, characters >255 have their hi-byte silently ignored.
      */
     function str2binl(str) {
-        var bin = Array();
+        var bin = [];
         var mask = (1 << chrsz) - 1;
         for (var i = 0; i < str.length * chrsz; i += chrsz)
             bin[i >> 5] |= (str.charCodeAt(i / chrsz) & mask) << (i % 32);
