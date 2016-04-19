@@ -14,7 +14,7 @@
         }
 
         //设置
-        function setItem(key, val, days, hours) {
+        function setItem(key, val, days, hours, mins) {
             var date = new Date();
 
             //过期天数
@@ -24,6 +24,10 @@
             //过期小时数
             else if (typeof  hours === 'number') {
                 date.setHours(date.getHours() + hours);
+            }
+            //过期分钟数
+            else if (typeof  mins === 'number') {
+                date.setMinutes(date.getMinutes() + mins);
             }
             //默认过期天数为1天
             else {
