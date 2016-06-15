@@ -5,6 +5,7 @@
 
         var localStorage = window.localStorage,
             Date = window.Date,
+            toString = {}.toString,
         //过期时间前缀
             expirePrefix = '_expire_';
 
@@ -13,33 +14,40 @@
             return;
         }
 
-        //设置
-        function setItem(key, val, days, hours, mins) {
+        /**
+         * 设置localStorage函数
+         * @param {string} key 键
+         * @param {string} val 值
+         * @param {Date|number} days 过期时间|过期天数
+         * @param {number} hours 过期小时数
+         */
+        function setItem(key, val, days, hours) {
+            //如设值为空
             if (val === undefined || val === null) {
                 return;
             }
 
-            var date = new Date();
+            var expire, now = new Date();
 
+            //days参数是一个日期
+            if (toString.call(days) === '[object Date]') {
+                expire = +days;
+            }
             //过期天数
-            if (typeof  days === 'number') {
-                date.setDate(date.getDate() + days);
+            else if (typeof days === 'number') {
+                expire = now.setDate(now.getDate() + days);
             }
             //过期小时数
-            else if (typeof  hours === 'number') {
-                date.setHours(date.getHours() + hours);
-            }
-            //过期分钟数
-            else if (typeof  mins === 'number') {
-                date.setMinutes(date.getMinutes() + mins);
+            else if (typeof hours === 'number') {
+                expire = now.setHours(now.getHours() + hours);
             }
             //默认过期天数为1天
             else {
-                date.setDate(date.getDate() + 1);
+                expire = now.setDate(now.getDate() + 1);
             }
 
             localStorage.setItem(key, val);
-            localStorage.setItem(expirePrefix + key, +date);
+            localStorage.setItem(expirePrefix + key, expire);
         }
 
         //获取
@@ -47,21 +55,26 @@
             var date = new Date(),
                 expire = localStorage.getItem(expirePrefix + key);
 
-            //判断过期时间
-            if (+expire > +date) {
+            //判断过期时间,如未过期
+            if (expire && +expire > +date) {
                 return localStorage.getItem(key);
+            }
+            //已过期就清除
+            else {
+                removeItem(key);
             }
         }
 
         //清除
-        function clearItem(key) {
-            localStorage.setItem(expirePrefix + key, +new Date());
+        function removeItem(key) {
+            localStorage.removeItem(key);
+            localStorage.removeItem(expirePrefix + key);
         }
 
         return {
-            setItem  : setItem,
-            getItem  : getItem,
-            clearItem: clearItem
+            setItem   : setItem,
+            getItem   : getItem,
+            removeItem: removeItem
         };
     })();
 
