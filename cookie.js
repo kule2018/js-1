@@ -4,21 +4,36 @@
     var cookie = (function () {
 
         var document = window.document,
+            toString = {}.toString,
             Date = window.Date;
 
-        //设置
+        /**
+         * 设置cookie函数
+         * @param {string} key 键
+         * @param {string} val 值
+         * @param {Date|number} days 过期时间|过期天数
+         * @param {number} hours 过期小时数
+         */
         function setItem(key, val, days, hours) {
             var str = key + '=' + encodeURIComponent(val);
 
-            var date = new Date();
-            if (typeof  days === 'number') {
-                date.setDate(date.getDate() + days);
-                str += ';expires=' + date.toUTCString();
+            var expire;
+            //days参数是一个日期
+            if (toString.call(days) === '[object Date]') {
+                expire = days;
             }
+            //过期天数
+            else if (typeof  days === 'number') {
+                expire = new Date();
+                expire.setDate(expire.getDate() + days);
+            }
+            //过期小时数
             else if (typeof  hours === 'number') {
-                date.setHours(date.getHours() + hours);
-                str += ';expires=' + date.toUTCString();
+                expire = new Date();
+                expire.setHours(expire.getHours() + hours);
             }
+
+            expire && (str += ';expires=' + expire.toUTCString());
             document.cookie = str;
         }
 
