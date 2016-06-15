@@ -53,15 +53,14 @@
         }
 
         //清除
-        function clearItem(key) {
-            var date = new Date();
-            document.cookie = key + '=_;expires=' + date.toUTCString();
+        function removeItem(key) {
+            document.cookie = key + '=_;expires=' + new Date().toUTCString();
         }
 
         return {
-            setItem  : setItem,
-            getItem  : getItem,
-            clearItem: clearItem
+            setItem   : setItem,
+            getItem   : getItem,
+            removeItem: removeItem
         };
     })();
 
