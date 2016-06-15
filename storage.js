@@ -15,6 +15,10 @@
 
         //设置
         function setItem(key, val, days, hours, mins) {
+            if (val === undefined || val === null) {
+                return;
+            }
+
             var date = new Date();
 
             //过期天数
@@ -45,8 +49,7 @@
 
             //判断过期时间
             if (+expire > +date) {
-                var val = localStorage.getItem(key);
-                return val !== 'null' && val;
+                return localStorage.getItem(key);
             }
         }
 
