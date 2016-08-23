@@ -559,13 +559,18 @@
         <textarea id="txt_a"></textarea>
         <textarea id="txt_b"></textarea>
         <p>
+            <input type="text" id="txt_count" placeholder="请输入运行次数" />
             <button id="btn">RUN</button>
         </p>
         <p id="msg"></p>
         <script type="text/javascript" src="perf.js"></script>
         <script type="text/javascript">
+            function getElById(id) {
+                return document.getElementById(id);
+            }
+
             //初始化预设加载库
-            var libChkEl = document.getElementById('lib_chk'),
+            var libChkEl = getElById('lib_chk'),
                     html = '',
                     scripts = [],
                     libs = [
@@ -579,7 +584,7 @@
                 document.head.appendChild(scriptEl);
                 scripts.push(scriptEl);
 
-                html += '<div>' +
+                html += '<div class="chk_item">' +
                         jses.map(function (js) {
                             return '<input data-index="' + index + '" data-js="' + js + '" type="radio" name="__radio_' + index + '"/>' + js;
                         }).join('') +
@@ -597,11 +602,14 @@
                     scripts[index].src = js;
                 }
             }, false);
+            [].forEach.call(libChkEl.querySelectorAll('.chk_item>input:first-of-type'), function (item) {
+                item.click();
+            });
 
 
-            //手工加载库
-            var btnLoadJsEl = document.getElementById('btn_loadjs'),
-                    txtJsEl = document.getElementById('txt_js');
+            //手动加载库
+            var btnLoadJsEl = getElById('btn_loadjs'),
+                    txtJsEl = getElById('txt_js');
 
             btnLoadJsEl.addEventListener('click', function () {
                 var js = txtJsEl.value;
@@ -617,19 +625,23 @@
 
 
             //run代码
-            var btnEl = document.getElementById('btn'),
-                    msgEl = document.getElementById('msg'),
-                    aEl = document.getElementById('txt_a'),
-                    bEl = document.getElementById('txt_b');
+            var btnEl = getElById('btn'),
+                    msgEl = getElById('msg'),
+                    aEl = getElById('txt_a'),
+                    bEl = getElById('txt_b'),
+                    countEl = getElById('txt_count');
 
             btnEl.addEventListener('click', function () {
                 msgEl.textContent = 'running...\n';
 
-                var a = aEl.value,
-                        b = bEl.value;
+                setTimeout(function () {
+                    var a = aEl.value,
+                            b = bEl.value,
+                            count = countEl.value;
 
-                a && perf(getFn(a), null, msgEl);
-                b && perf(getFn(b), null, msgEl);
+                    a && perf(getFn(a), count, msgEl);
+                    b && perf(getFn(b), count, msgEl);
+                }, 100);
             }, false);
 
             function getFn(str) {
