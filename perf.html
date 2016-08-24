@@ -576,44 +576,70 @@
 
         <script type="text/javascript" src="perf.js"></script>
         <script type="text/javascript">
+            //根据id获取元素函数
             function getElById(id) {
                 return document.getElementById(id);
             }
 
+            //加载js函数
+            function getScript(js, fn) {
+                var scriptEl = document.createElement('script');
+
+                scriptEl.type = 'text/javascript';
+                js && ( scriptEl.src = js);
+
+                scriptEl.onload = function () {
+                    typeof fn === 'function' && fn();
+                };
+
+                document.head.appendChild(scriptEl);
+
+                return scriptEl;
+            }
+
             //初始化预设加载库
             var libChkEl = getElById('lib_chk'),
-                    html = '',
+                    msgEl = getElById('msg'),
                     scripts = [],
+                    forEach = scripts.forEach,
                     libs = [
                         ['http://soneway.github.io/jq/jq.js', 'http://www.zeptojs.cn/zepto.js', 'https://code.jquery.com/jquery-3.1.0.js']
                     ];
 
             //预设库html
-            libs.forEach(function (jses, index) {
-                var scriptEl = document.createElement('script');
-                scriptEl.type = 'text/javascript';
-                document.head.appendChild(scriptEl);
-                scripts.push(scriptEl);
-
-                html += '<div class="chk_item">' +
+            libChkEl.innerHTML = libs.map(function (jses, index) {
+                return '<div class="chk_item">' +
                         jses.map(function (js) {
-                            return '<input data-index="' + index + '" data-js="' + js + '" type="radio" name="__radio_' + index + '"/>' + js;
+                            return '<input id="' + js + '" data-index="' + index + '" data-js="' + js + '" type="radio" name="__radio_' + index + '"/>' +
+                                    '<label for="' + js + '">' + js + '</label>';
                         }).join('') +
                         '</div>';
-            });
-            libChkEl.innerHTML = html;
+            }).join('');
 
             //切换预设库
             libChkEl.addEventListener('click', function (evt) {
                 var target = evt.target;
                 if (target.tagName.toLowerCase() === 'input') {
                     var index = target.getAttribute('data-index'),
-                            js = target.getAttribute('data-js');
+                            js = target.getAttribute('data-js'),
+                            scriptEl = scripts[index];
 
-                    scripts[index].src = js;
+                    if (js) {
+                        msgEl.innerHTML = 'loading...';
+
+                        //如已加载过script就remove
+                        scriptEl && document.head.removeChild(scriptEl);
+
+                        //加载js
+                        scripts[index] = getScript(js, function () {
+                            msgEl.innerHTML = js + ' 已加载';
+                        });
+                    }
                 }
             }, false);
-            [].forEach.call(libChkEl.querySelectorAll('.chk_item>input:first-of-type'), function (item) {
+
+            //默认点击第一个(加载第一个js)
+            forEach.call(libChkEl.querySelectorAll('.chk_item>input:first-of-type'), function (item) {
                 item.click();
             });
 
@@ -624,20 +650,20 @@
 
             btnLoadJsEl.addEventListener('click', function () {
                 var js = txtJsEl.value;
-                js && loadJs(js);
-            }, false);
 
-            function loadJs(js) {
-                var scriptEl = document.createElement('script');
-                scriptEl.type = 'text/javascript';
-                scriptEl.src = js;
-                document.head.appendChild(scriptEl);
-            }
+                if (js) {
+                    msgEl.innerHTML = 'loading...';
+
+                    //加载js
+                    getScript(js, function () {
+                        msgEl.innerHTML = js + ' 已加载';
+                    });
+                }
+            }, false);
 
 
             //run代码
             var btnEl = getElById('btn'),
-                    msgEl = getElById('msg'),
                     aEl = getElById('txt_a'),
                     bEl = getElById('txt_b'),
                     countEl = getElById('txt_count');
