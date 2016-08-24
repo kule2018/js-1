@@ -26,7 +26,7 @@
                     //默认运行100万次
                     times || (times = 999999);
 
-                    var rand = +new Date;
+                    var rand = Date.now();
 
                     //开始时间
                     mark.call(performance, 'start' + rand);
