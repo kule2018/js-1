@@ -552,17 +552,22 @@
         <!--测试DOM end-->
 
         <div id="lib_chk"></div>
+
         <div class="loadjs_wrap">
             <input type="text" id="txt_js" placeholder="请输入需要加载的js的路径" />
             <button id="btn_loadjs">加载JS</button>
         </div>
-        <textarea id="txt_a"></textarea>
-        <textarea id="txt_b"></textarea>
+
+        <textarea id="txt_a" placeholder="请输入需要运行的代码"></textarea>
+        <textarea id="txt_b" placeholder="请输入需要运行的代码"></textarea>
+
         <p>
             <input type="text" id="txt_count" placeholder="请输入运行次数" />
             <button id="btn">RUN</button>
         </p>
+
         <p id="msg"></p>
+
         <script type="text/javascript" src="perf.js"></script>
         <script type="text/javascript">
             function getElById(id) {
