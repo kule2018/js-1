@@ -12,9 +12,9 @@
             }
 
             textarea {
-                width: 45%;
+                width: 30%;
                 height: 400px;
-                max-width: 400px;
+                max-width: 300px;
             }
 
             #msg {
@@ -561,6 +561,7 @@
 
         <textarea id="txt_a" placeholder="请输入需要运行的代码"></textarea>
         <textarea id="txt_b" placeholder="请输入需要运行的代码"></textarea>
+        <textarea id="txt_c" placeholder="请输入需要运行的代码"></textarea>
 
         <p>
             <input type="text" id="txt_count" placeholder="请输入运行次数(默认100万次)" />
@@ -661,6 +662,7 @@
             var btnEl = getElById('btn'),
                     aEl = getElById('txt_a'),
                     bEl = getElById('txt_b'),
+                    cEl = getElById('txt_c'),
                     countEl = getElById('txt_count');
 
             btnEl.addEventListener('click', function () {
@@ -669,10 +671,12 @@
                 setTimeout(function () {
                     var a = aEl.value,
                             b = bEl.value,
+                            c = cEl.value,
                             count = countEl.value;
 
                     a && perf(getFn(a), count, msgEl);
                     b && perf(getFn(b), count, msgEl);
+                    c && perf(getFn(c), count, msgEl);
                 }, 100);
             }, false);
 
