@@ -1,10 +1,10 @@
 ﻿(function (window) {
 
-    var encodeURIComponent = window.encodeURIComponent,
-        decodeURIComponent = window.decodeURIComponent;
-
     //参数操作对象
     var query = (function () {
+        var encodeURIComponent = window.encodeURIComponent,
+            decodeURIComponent = window.decodeURIComponent,
+            search = location.search.slice(1);
 
         //将对象转为参数字符函数
         function stringify(obj, isNotnull) {
@@ -12,10 +12,11 @@
 
             var array = [];
             for (var p in obj) {
-                var val = obj[p];
+                var val = obj[p],
+                    kvStr = p + '=' + encodeURIComponent(val);
 
                 //是否只拼接非空
-                isNotnull ? val && array.push(p + '=' + encodeURIComponent(val)) : array.push(p + '=' + encodeURIComponent(val));
+                isNotnull ? val && array.push(kvStr) : array.push(kvStr);
             }
             return array.join('&');
         }
@@ -34,18 +35,15 @@
         }
 
         //获取参数函数
-        var getItem = (function () {
-            var search = location.search.slice(1);
-            return function (key) {
-                var obj = parse(search);
-                return obj && obj[key];
-            }
-        })();
+        function getItem(key, queryStr) {
+            var obj = parse(queryStr || search);
+            return obj && obj[key];
+        }
 
         return {
             stringify: stringify,
-            parse    : parse,
-            getItem  : getItem
+            parse: parse,
+            getItem: getItem
         };
     })();
 

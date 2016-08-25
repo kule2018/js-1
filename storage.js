@@ -6,7 +6,7 @@
         var localStorage = window.localStorage,
             Date = window.Date,
             toString = {}.toString,
-        //过期时间前缀
+            //过期时间前缀
             expirePrefix = '_expire_';
 
         //IE8-
@@ -72,8 +72,8 @@
         }
 
         return {
-            setItem   : setItem,
-            getItem   : getItem,
+            setItem: setItem,
+            getItem: getItem,
             removeItem: removeItem
         };
     })();
