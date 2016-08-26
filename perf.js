@@ -18,11 +18,12 @@
         //支持performance
         var performance = window.performance;
         if (performance) {
-            var mark = performance.mark || performance.webkitMark || performance.msMark || performance.mozMark;
+            //performance.mark
+            performance.mark || (performance.mark = performance.webkitMark || performance.msMark || performance.mozMark);
 
             //支持performance.mark
-            if (mark) {
-                var getEntriesByName = performance.getEntriesByName || performance.webkitGetEntriesByName || performance.msGetEntriesByName || performance.mozGetEntriesByName;
+            if (performance.mark) {
+                performance.getEntriesByName || (performance.getEntriesByName = performance.webkitGetEntriesByName || performance.msGetEntriesByName || performance.mozGetEntriesByName);
 
                 return function (fn, times, msgEl) {
                     //默认运行100万次
@@ -31,15 +32,15 @@
                     var rand = Date.now();
 
                     //开始时间
-                    mark.call(performance, 'start' + rand);
+                    performance.mark('start' + rand);
                     for (var i = 0; i < times; i++) {
                         fn();
                     }
                     //结束时间
-                    mark.call(performance, 'end' + rand);
+                    performance.mark('end' + rand);
 
-                    var start = getEntriesByName.call(performance, 'start' + rand)[0].startTime,
-                        end = getEntriesByName.call(performance, 'end' + rand)[0].startTime;
+                    var start = performance.getEntriesByName('start' + rand)[0].startTime,
+                        end = performance.getEntriesByName('end' + rand)[0].startTime;
 
                     logPerfInfo(fn, times, start, end, msgEl);
                 };
