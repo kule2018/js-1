@@ -681,6 +681,8 @@
             }, false);
 
             function getFn(str) {
+                //只有一条语句时,加上return,方便查看运行结果
+                str.split(/;|\n/).length < 2 && (str = 'return ' + str);
                 return new Function(str);
             }
         </script>
