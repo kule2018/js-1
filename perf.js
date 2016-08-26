@@ -9,7 +9,7 @@
             fnStr = fnStr.slice(fnStr.indexOf('{') + 1);
             fnStr = fnStr.slice(0, fnStr.length - 1);
 
-            var logStr = fnStr + ' 运行' + times + '次时长：' + (end - start).toFixed(2) + 'ms';
+            var logStr = fnStr + ' 运行' + times + '次时长：' + (end - start).toFixed(2) + 'ms\n' + '运行结果：' + JSON.stringify(fn(), null, '\t');
             msgEl ? msgEl.textContent += logStr + '\n' : console.log(logStr);
         }
 
