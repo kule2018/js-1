@@ -1,6 +1,8 @@
 ﻿(function (window) {
 
     var perf = (function () {
+        var Date = window.Date,
+            JSON = window.JSON;
 
         //打印函数
         function logPerfInfo(fn, times, start, end, msgEl) {
