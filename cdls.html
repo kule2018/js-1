@@ -7,13 +7,31 @@
 
         </style>
     </head>
-
-
     <body>
+        <button id="btn_set_item">setItem</button>
+        <button id="btn_get_item">getItem</button>
+        <button id="btn_remove_item">removeItem</button>
+        <button id="btn_clear">clear</button>
         <script type="text/javascript" src="cdls.js"></script>
         <script type="text/javascript">
             var cdLocalStorage = cdls({
                 cdlsUrl: 'http://100.84.47.149:5000/webview/cdls'
+            });
+
+            document.addEventListener('click', function (evt) {
+                var id = evt.target.id;
+                if (id === 'btn_set_item') {
+                    return cdLocalStorage.setItem('test', 'test');
+                }
+                if (id === 'btn_get_item') {
+                    console.log(cdLocalStorage.getItem('test'));
+                }
+                if (id === 'btn_remove_item') {
+                    return cdLocalStorage.removeItem('test');
+                }
+                if (id === 'btn_clear') {
+                    return cdLocalStorage.clear();
+                }
             });
         </script>
     </body>
