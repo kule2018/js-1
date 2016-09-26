@@ -15,19 +15,21 @@
         return function (opts) {
             opts || (opts = {});
 
-            if (!opts.cdlsUrl) {
+            var cdlsUrl = opts.cdlsUrl;
+            if (!cdlsUrl) {
                 return console.log('cdlsUrl不能为空');
             }
 
-            var ifrEl, cdls = {
-                reloadData: reloadData,
-                allData: {},
+            var ifrEl,
+                cdls = {
+                    reloadData: reloadData,
+                    allData: {},
 
-                getItem: getItem,
-                setItem: setItem,
-                removeItem: removeItem,
-                clear: clear
-            };
+                    getItem: getItem,
+                    setItem: setItem,
+                    removeItem: removeItem,
+                    clear: clear
+                };
 
             // 收到信息事件
             window.addEventListener('message', function (evt) {
@@ -51,12 +53,12 @@
                     ifrEl.style.display = 'none';
                     document.body.appendChild(ifrEl);
                 }
-                ifrEl.src = opts.cdlsUrl;
+                ifrEl.src = cdlsUrl;
             }
 
             // 发送数据函数
             function postMessage(data) {
-                ifrEl.contentWindow.postMessage(data, opts.cdlsUrl);
+                ifrEl.contentWindow.postMessage(data, cdlsUrl);
             }
 
             // 获取项函数
