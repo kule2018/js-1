@@ -40,7 +40,7 @@
 
                     // success
                     var success = cdls.success;
-                    typeof success === 'function' && success(cdls.allData);
+                    typeof success === 'function' && success(cdls.allData, cdls);
                 }
             }, false);
 
