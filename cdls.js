@@ -31,34 +31,16 @@
                     clear: clear
                 };
 
-            // 收到信息事件
-            window.addEventListener('message', function (evt) {
-                var data = evt.data;
-                if (data.id === GET_ALL_DATA_KEY) {
-                    cdls.allData = data.data;
-
-                    // ready
-                    cdls.ready = true;
-
-                    // success
-                    var success = opts.success;
-                    typeof success === 'function' && success(cdls.allData, cdls);
-                }
-            }, false);
-
-            // reload数据函数
-            function reloadData() {
-                if (!ifrEl) {
-                    ifrEl = document.createElement('iframe');
-                    ifrEl.style.display = 'none';
-                    document.body.appendChild(ifrEl);
-                }
-                ifrEl.src = cdlsUrl;
-            }
-
             // 发送数据函数
             function postMessage(data) {
                 ifrEl.contentWindow.postMessage(data, cdlsUrl);
+            }
+
+            // 刷新数据函数
+            function reloadData() {
+                postMessage({
+                    id: GET_ALL_DATA_KEY
+                });
             }
 
             // 获取项函数
@@ -102,14 +84,44 @@
                 cdls.allData = {};
             }
 
-            // visibilitychange事件
-            document.addEventListener(visibilitychange, function () {
-                // 页面重新显示时刷新ls
-                !document[hidden] && reloadData();
-            });
 
-            // 刷新数据
-            reloadData();
+            // 初始化函数
+            function init() {
+                ifrEl = document.createElement('iframe');
+                ifrEl.style.display = 'none';
+                ifrEl.src = cdlsUrl;
+                document.body.appendChild(ifrEl);
+
+                initEvent();
+            }
+
+            // 初始化事件
+            function initEvent() {
+                // 收到信息事件
+                window.addEventListener('message', function (evt) {
+                    var data = evt.data;
+                    if (data.id === GET_ALL_DATA_KEY) {
+                        cdls.allData = data.data;
+
+                        // ready
+                        cdls.ready = true;
+
+                        // success
+                        var success = opts.success;
+                        typeof success === 'function' && success(cdls.allData, cdls);
+                    }
+                }, false);
+
+                // visibilitychange事件
+                document.addEventListener(visibilitychange, function () {
+                    // 页面重新显示时刷新ls
+                    !document[hidden] && reloadData();
+                });
+            }
+
+
+            // 初始化
+            init();
 
             return cdls;
         };
