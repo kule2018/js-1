@@ -51,9 +51,6 @@
                 ifrEl.src = opts.cdlsUrl;
             }
 
-            // 刷新数据
-            reloadData();
-
             // 获取项函数
             function getItem(key) {
                 return cdls.allData[key] || null;
@@ -100,6 +97,9 @@
                 // 页面重新显示时刷新ls
                 document[hidden] && reloadData();
             });
+
+            // 刷新数据
+            reloadData();
 
             return cdls;
         };
