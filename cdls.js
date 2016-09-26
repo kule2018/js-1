@@ -22,6 +22,7 @@
             var ifrEl, cdls = {
                 reloadData: reloadData,
                 allData: {},
+
                 getItem: getItem,
                 setItem: setItem,
                 removeItem: removeItem,
@@ -33,8 +34,10 @@
                 var data = evt.data;
                 if (data.id === GET_ALL_DATA_KEY) {
                     cdls.allData = data.data;
+
                     // ready
                     cdls.ready = true;
+
                     // success
                     var success = cdls.success;
                     typeof success === 'function' && success(cdls.allData);
