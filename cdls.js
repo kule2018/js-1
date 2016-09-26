@@ -39,7 +39,7 @@
                     cdls.ready = true;
 
                     // success
-                    var success = cdls.success;
+                    var success = opts.success;
                     typeof success === 'function' && success(cdls.allData, cdls);
                 }
             }, false);
