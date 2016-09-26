@@ -42,6 +42,7 @@
 
             // visibilitychange事件
             document.addEventListener(visibilitychange, function () {
+                console.log(document[hidden]);
                 // 页面重新显示时刷新ls
                 document[hidden] && refreshLs();
             });
