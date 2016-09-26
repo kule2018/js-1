@@ -54,6 +54,11 @@
                 ifrEl.src = opts.cdlsUrl;
             }
 
+            // 发送数据函数
+            function postMessage(data) {
+                ifrEl.contentWindow.postMessage(data, opts.cdlsUrl);
+            }
+
             // 获取项函数
             function getItem(key) {
                 return cdls.allData[key] || null;
@@ -62,11 +67,11 @@
             // 设置项函数
             function setItem(key, val) {
                 // 发送更新数据信息
-                ifrEl.contentWindow.postMessage({
+                postMessage({
                     id: SET_ITEM_KEY,
                     key: key,
                     val: val
-                }, opts.cdlsUrl);
+                });
 
                 // 同步allData中数据
                 cdls.allData[key] = val;
@@ -75,10 +80,10 @@
             // 移除项函数
             function removeItem(key) {
                 // 发送更新数据信息
-                ifrEl.contentWindow.postMessage({
+                postMessage({
                     id: REMOVE_ITEM_KEY,
                     key: key
-                }, opts.cdlsUrl);
+                });
 
                 // 同步allData中数据
                 cdls.allData[key] = null;
@@ -87,9 +92,9 @@
             // 删除所有
             function clear() {
                 // 发送更新数据信息
-                ifrEl.contentWindow.postMessage({
+                postMessage({
                     id: CLEAR_KEY
-                }, opts.cdlsUrl);
+                });
 
                 // 同步allData中数据
                 cdls.allData = {};
