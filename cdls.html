@@ -12,6 +12,7 @@
         <button id="btn_get_item">getItem</button>
         <button id="btn_remove_item">removeItem</button>
         <button id="btn_clear">clear</button>
+        <button id="btn_reload_data">reloadData</button>
         <script type="text/javascript" src="cdls.js"></script>
         <script type="text/javascript">
             var cdLocalStorage = cdls({
@@ -31,6 +32,10 @@
                 }
                 if (id === 'btn_clear') {
                     return cdLocalStorage.clear();
+                }
+                if (id === 'btn_reload_data') {
+                    cdLocalStorage.reloadData();
+                    return console.log(cdLocalStorage.allData);
                 }
             });
         </script>
