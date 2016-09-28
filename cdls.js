@@ -116,7 +116,7 @@
                 document.addEventListener(visibilitychange, function () {
                     // 页面重新显示时刷新ls
                     !document[hidden] && reloadData();
-                });
+                }, false);
             }
 
 
