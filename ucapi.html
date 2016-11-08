@@ -14,7 +14,14 @@
         <script type="text/javascript">
             ucapi.account.onAccountStateChange({
                 trigger: function (rs) {
-                    alert(JSON.stringify(rs));
+                    alert('test1' + JSON.stringify(rs));
+                }
+            });
+
+            ucapi.infoflow.notifyFlushWebItemInfo({
+                data: {
+                    id: '3441864853373180949',
+                    cmt_enabled: true
                 }
             });
 
