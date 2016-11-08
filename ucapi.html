@@ -11,6 +11,7 @@
     </head>
     <body>
         <script type="text/javascript" src="uc-jsdk.js"></script>
+        <script type="text/javascript" src="query.js"></script>
         <script type="text/javascript">
             ucapi.account.onAccountStateChange({
                 trigger: function (rs) {
@@ -18,7 +19,14 @@
                 }
             });
 
-            ucapi.infoflow.notifyFlushWebItemInfo({
+            // TODO test
+            query.getItem('debug') && (function () {
+                var scriptEl = document.createElement('script');
+                scriptEl.src = 'http://100.84.47.149:8888/target/target-script-min.js#anonymous';
+                document.head.appendChild(scriptEl);
+            })();
+
+            /*ucapi.infoflow.notifyFlushWebItemInfo({
                 data: {
                     id: '3441864853373180949',
                     cmt_enabled: true
@@ -49,15 +57,7 @@
                 data: {
                     id: ''
                 }
-            });
-
-            setTimeout(function () {
-                ucapi.account.onAccountStateChange({
-                    trigger: function (rs) {
-                        alert(JSON.stringify(rs));
-                    }
-                });
-            }, 1000);
+            });*/
         </script>
     </body>
 </html>
