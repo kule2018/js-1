@@ -3,7 +3,8 @@
     <head>
         <title>测试</title>
         <style>
-            * {
+            *
+            {
                 font-size: 50px;
             }
         </style>
@@ -12,7 +13,7 @@
         <script type="text/javascript" src="uc-jsdk.js"></script>
         <script type="text/javascript">
             ucapi.account.onAccountStateChange({
-                trigger: function(rs) {
+                trigger: function (rs) {
                     alert(JSON.stringify(rs));
                 }
             });
@@ -26,13 +27,26 @@
 
             ucapi.infoflow.notifyFlushWebItemInfo({
                 data: {
+                    id: '3441864853373180949'
+                }
+            });
+
+            ucapi.infoflow.notifyFlushWebItemInfo({
+                data: {
+                    id: '',
+                    cmt_enabled: true
+                }
+            });
+
+            ucapi.infoflow.notifyFlushWebItemInfo({
+                data: {
                     id: ''
                 }
             });
 
-            setTimeout(function() {
+            setTimeout(function () {
                 ucapi.account.onAccountStateChange({
-                    trigger: function(rs) {
+                    trigger: function (rs) {
                         alert(JSON.stringify(rs));
                     }
                 });
