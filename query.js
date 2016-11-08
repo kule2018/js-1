@@ -57,3 +57,38 @@
     window.query = query;
 
 })(window);
+
+
+// 查询字符操作对象
+/*
+var query = (function() {
+    var Object = window.Object,
+        decodeURIComponent = window.decodeURIComponent,
+        encodeURIComponent = window.encodeURIComponent;
+
+    // 查询字符转为对象
+    function parse(str) {
+        str || (str = location.search.slice(1));
+        if (str) {
+            var rs = {};
+            str.split('&').forEach(function(item) {
+                var kvs = item.split('=');
+                rs[kvs[0]] = decodeURIComponent(kvs[1]);
+            });
+            return rs;
+        }
+        return null;
+    }
+
+    // 对象转为查询字符
+    function stringify(obj) {
+        Object.keys(obj).map(function(key) {
+            return key + '=' + encodeURIComponent(obj[key]);
+        }).join('&');
+    }
+
+    return {
+        parse: parse,
+        stringify: stringify
+    };
+})();*/

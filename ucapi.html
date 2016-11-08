@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>测试</title>
+        <style>
+            * {
+                font-size: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript" src="uc-jsdk.js"></script>
+        <script type="text/javascript">
+            ucapi.infoflow.notifyFlushWebItemInfo({
+                data: {
+                    id: '3441864853373180949',
+                    cmt_enabled: true
+                }
+            });
+            ucapi.account.onAccountStateChange({
+                trigger: function(rs) {
+                    alert(JSON.stringify(rs));
+                }
+            });
+        </script>
+    </body>
+</html>
