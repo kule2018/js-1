@@ -11,17 +11,32 @@
     <body>
         <script type="text/javascript" src="uc-jsdk.js"></script>
         <script type="text/javascript">
+            ucapi.account.onAccountStateChange({
+                trigger: function(rs) {
+                    alert(JSON.stringify(rs));
+                }
+            });
+
             ucapi.infoflow.notifyFlushWebItemInfo({
                 data: {
                     id: '3441864853373180949',
                     cmt_enabled: true
                 }
             });
-            ucapi.account.onAccountStateChange({
-                trigger: function(rs) {
-                    alert(JSON.stringify(rs));
+
+            ucapi.infoflow.notifyFlushWebItemInfo({
+                data: {
+                    id: ''
                 }
             });
+
+            setTimeout(function() {
+                ucapi.account.onAccountStateChange({
+                    trigger: function(rs) {
+                        alert(JSON.stringify(rs));
+                    }
+                });
+            }, 1000);
         </script>
     </body>
 </html>
