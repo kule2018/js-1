@@ -6,7 +6,8 @@
     /*上下高度加大,防止无法全屏覆盖*/
     top: -200px;
     bottom: -200px;
-    width: 100%;
+    left: 0;
+    right: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 9999;
     color: #999;
