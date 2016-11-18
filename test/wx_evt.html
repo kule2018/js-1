@@ -9,9 +9,21 @@
             {
                 cursor: pointer;
             }
+
+
+            div
+            {
+                background: #000;
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+            }
         </style>
     </head>
     <body>
+        <div></div>
         <script type="text/javascript" src="../zepto.js"></script>
         <script type="text/javascript">
             (function () {
@@ -21,11 +33,11 @@
             })();
 
             $(document).on('touchstart', function (evt) {
-                console.log(evt.timeStamp);
+                console.log('touchstart', evt.timeStamp);
             }).on('touchend', function (evt) {
-                console.log(evt.timeStamp);
+                console.log('touchend', evt.timeStamp);
             }).on('click', function (evt) {
-                console.log(evt.timeStamp);
+                console.log('click', evt.timeStamp);
             });
         </script>
     </body>
