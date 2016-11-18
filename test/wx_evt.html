@@ -1,0 +1,39 @@
+﻿<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>test</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+        <style type="text/css">
+            #div
+            {
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                display: none;
+                background: rgba(0, 0, 0, 0.5);
+            }
+
+
+            #div.visible
+            {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="div"></div>
+        <button id="btn">click</button>
+        <script type="text/javascript" src="../zepto.js"></script>
+        <script type="text/javascript">
+            var $div = $('#div');
+            $(document).on('click', '#btn', function () {
+                $div.addClass('visible')
+            }).on('click', '#div', function () {
+                alert(1);
+                $div.removeClass('visible');
+            });
+        </script>
+    </body>
+</html>
