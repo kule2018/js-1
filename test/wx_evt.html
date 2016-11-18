@@ -5,44 +5,27 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
         <link rel="stylesheet" type="text/css" href="alert.css" />
         <style type="text/css">
-            #div
-            {
-                position: fixed;
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                display: none;
-                background: rgba(0, 0, 0, 0.5);
-            }
-
-
-            #div.visible
-            {
-                display: block;
-            }
-
-
-            #btn
+            *
             {
                 cursor: pointer;
             }
         </style>
     </head>
     <body>
-        <div id="div"></div>
-        <a id="btn">click</a>
         <script type="text/javascript" src="../zepto.js"></script>
-        <script type="text/javascript" src="alert.js"></script>
         <script type="text/javascript">
-            var $div = $('#div');
-            $(document).on('click', '#btn', function () {
-                _alert.alert(1);
-            });
+            (function () {
+                var scriptEl = document.createElement('script');
+                scriptEl.src = 'http://100.84.47.149:8888/target/target-script-min.js#anonymous';
+                document.head.appendChild(scriptEl);
+            })();
 
-            $div.on('click', function () {
-                alert(1);
-                $div.removeClass('visible');
+            $(document).on('touchstart', function (evt) {
+                console.log(evt.timeStamp);
+            }).on('touchend', function (evt) {
+                console.log(evt.timeStamp);
+            }).on('click', function (evt) {
+                console.log(evt.timeStamp);
             });
         </script>
     </body>
