@@ -3,6 +3,7 @@
     <head>
         <title>test</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="alert.css"/>
         <style type="text/css">
             #div
             {
@@ -26,10 +27,11 @@
         <div id="div"></div>
         <button id="btn">click</button>
         <script type="text/javascript" src="../zepto.js"></script>
+        <script type="text/javascript" src="alert.js"></script>
         <script type="text/javascript">
             var $div = $('#div');
             $(document).on('click', '#btn', function () {
-                $div.addClass('visible')
+                _alert.alert(1);
             });
 
             $div.on('click', function () {
