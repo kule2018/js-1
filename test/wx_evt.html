@@ -3,29 +3,30 @@
     <head>
         <title>test</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
-        <link rel="stylesheet" type="text/css" href="alert.css" />
         <style type="text/css">
             *
             {
-                cursor: pointer;
+                /*cursor: pointer;*/
             }
 
 
-            div
+            #btn
             {
-                background: #000;
-                position: absolute;
-                left: 0;
-                top: 0;
-                right: 0;
-                bottom: 0;
+                font-size: 20px;
+            }
+
+
+            #div
+            {
+                height: 80px;
+                width: 200px;
+                background: #f00;
             }
         </style>
     </head>
     <body>
-        <div>
-            <button>btn</button>
-        </div>
+        <button id="btn">btn</button>
+        <div id="div"></div>
         <script type="text/javascript" src="../zepto.js"></script>
         <script type="text/javascript">
             (function () {
@@ -34,7 +35,15 @@
                 document.head.appendChild(scriptEl);
             })();
 
-            $(document).on('touchstart', function (evt) {
+            $('#div').on('touchstart', function (evt) {
+                console.log('touchstart', evt.timeStamp);
+            }).on('touchend', function (evt) {
+                console.log('touchend', evt.timeStamp);
+            }).on('click', function (evt) {
+                console.log('click', evt.timeStamp);
+            });
+
+            $('#btn').on('touchstart', function (evt) {
                 console.log('touchstart', evt.timeStamp);
             }).on('touchend', function (evt) {
                 console.log('touchend', evt.timeStamp);
