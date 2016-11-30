@@ -4,6 +4,8 @@
     var cookie = (function () {
 
         var document = window.document,
+            encodeURIComponent = window.encodeURIComponent,
+            decodeURIComponent = window.decodeURIComponent,
             toString = {}.toString,
             Date = window.Date;
 
@@ -58,8 +60,8 @@
         }
 
         return {
-            setItem   : setItem,
-            getItem   : getItem,
+            setItem: setItem,
+            getItem: getItem,
             removeItem: removeItem
         };
     })();

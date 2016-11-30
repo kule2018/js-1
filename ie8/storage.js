@@ -9,6 +9,11 @@
             //过期时间前缀
             expirePrefix = '_expire_';
 
+        //IE8-
+        if (!localStorage) {
+            return;
+        }
+
         /**
          * 设置localStorage函数
          * @param {string} key 键
