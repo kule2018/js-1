@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>测试</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+        <style>
+            *
+            {
+                font-size: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="div">
+            <p>点击</p>
+        </div>
+        <script type="text/javascript" src="http://soneway.github.io/jq/jq.js"></script>
+        <script type="text/javascript">
+            /*$(document).on('click', '#div p', function () {
+                alert('document');
+            });*/
+            $(document.body).on('click', '#div p', function () {
+                alert('body');
+            });
+            /*$('#div').on('click', 'p', function () {
+                alert('#div');
+            });*/
+            ucapi.account.onAccountStateChange({
+                trigger: function (rs) {
+                    alert('test1' + JSON.stringify(rs));
+                }
+            });
+        </script>
+    </body>
+</html>
