@@ -1,0 +1,30 @@
+﻿<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>test</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+        <style type="text/css">
+            *
+            {
+                font-size: inherit;
+            }
+        </style>
+    </head>
+    <body>
+        <button data-href="http://toutiao.com/m/detail/?group_id=&item_id=&scheme=snssdk141%3A%2F%2Fdetail%3Fgroupid%3D6350397455544598785%26gd_label%3Dclick_weixin_detail_playvideo%26flags%3D64">今日头条</button>
+        <button data-href="snssdk143://detail?groupid=6350397455544598785&gd_label=click_wap_detail_playvideo&flags=64">今日头条</button>
+        <button data-href="ucnews://hao123.com">uc头条</button>
+        <script type="text/javascript" src="../zepto.js"></script>
+        <script type="text/javascript">
+
+            //调端
+            function openApp(url) {
+                location.href = url;
+            }
+
+            $(document).on('click', 'button', function () {
+                openApp(this.getAttribute('data-href'));
+            });
+        </script>
+    </body>
+</html>
