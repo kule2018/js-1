@@ -60,8 +60,10 @@
     <script type="text/javascript" src="http://zzd.sm.cn/third_party/js/jquery.min.js"></script>
     <script type="text/javascript" src="http://zzd.sm.cn/third_party/js/SMDefaultJS.js"></script>
     <script type="text/javascript">
-        var a = document.querySelector('article'),
+        var $a = $('#article'),
             js = '<script type="text/javascript" src="http://uc.jinghua.cn/js/api.js?_=dafdadafd"><' + '/script>',
             js2 = '<script type="text/javascript" src="api.js?_ssdfdafd"><' + '/script>';
+
+        // 跨域的异步外链js无法doucment.write
     </script>
 </html>
