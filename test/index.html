@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>音频测试</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+        <style>
+
+
+        </style>
+    </head>
+    <body>
+        <audio id="audio" controls autoplay></audio>
+        <script type="text/javascript" src="http://soneway.github.io/js/query.js"></script>
+        <script type="text/javascript" src="http://soneway.github.io/jq/jq.js"></script>
+        <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript">
+          var audioEl = document.getElementById('audio'),
+            src = query.getItem('src');
+
+          if (src) {
+            audioEl.src = src;
+            // 其他不支持自动播放浏览器用touchstart触发播放
+            document.addEventListener('touchstart', function() {
+              audioEl.play();
+            }, false);
+          }
+        </script>
+    </body>
+</html>

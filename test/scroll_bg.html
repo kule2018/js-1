@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>测试</title>
+        <meta name="viewport" content="width=device-width,initial-scale=0.5,user-scalable=no" />
+        <style>
+            *
+            {
+                padding: 0;
+                margin: 0;
+            }
+
+
+            section
+            {
+                height: 100vh;
+                background: center top fixed;
+                background-size: cover;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+
+            section:nth-of-type(1)
+            {
+                background-image: url(../img/1.jpg);
+            }
+
+
+            section:nth-of-type(2)
+            {
+                background-image: url(../img/2.jpg);
+            }
+
+
+            section:nth-of-type(3)
+            {
+                background-image: url(../img/3.jpg);
+            }
+
+
+            section:nth-of-type(4)
+            {
+                background-image: url(../img/4.jpg);
+            }
+
+
+            section > p
+            {
+                width: 50%;
+                background: rgba(0, 0, 0, 0.5);
+                padding: 10px;
+                color: #fff;
+                line-height: 1.5;
+                font-size: 18px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <section>
+            <p>
+                SGML 即Standard Globalized Markup Language 是用来定义标准的标记语言，简单的说，就是定义文档的元语言。
+                HTML 是基于SGML 的超链接语言，可以用于创建Web页面。在DTD 内部定义了标签的规则，DTD就是使用SGML 语言创建的。
+                XML 是从SGML 衍生而来的，它主要处理互联网方面的需求，HTML 有很多限制，XML 是SGML 的子集，可用于表示数据。
+            </p>
+        </section>
+        <section>
+            <p>
+                这句代码简单的介绍了HTML 版本号，有了Doctype，就引入了对应的DTD（定义了HTML文档的组织结构），在页面中添加的所有标签才会是合法的，简单的说DTD 就是定义HTML的语法规则。
+                即使在没有引入DTD的情况下，很多浏览器也可以识别HTML元素，因为它们自身包含对HTML 元素的定义，这就是为什么很多开发人员没有感受到DTD 的存在。
+            </p>
+        </section>
+        <section>
+            <p>
+                HTML5不是基于SGML 语言的，因此不需要DTD ，它是一种全新的标记语言，有自己的解析规则，HTML5的语法规则与之前版本有很大的差别，可以称的上是一种全新的语言。
+                HTML5 的Doctype 非常简单
+            </p>
+        </section>
+        <section>
+            <p>
+                event.preventDefault(); 会组织默认行为的发生，将错误信息置顶event.srcElement；获取包含非法值的控件，如上的Email textbox;element.validity; 包含控件的验证信息，如valueMissing，typeMismatch，badInput等。
+            </p>
+        </section>
+        <script type="text/javascript" src="../jq.js"></script>
+        <script type="text/javascript">
+            var bodyEl = document.body,
+                $sections = $('section');
+            $(window).on('scroll', function () {
+                var scrollTop = bodyEl.scrollTop;
+                $sections.each(function (i) {
+                    var $this = $(this);
+                    $this.css('background-position', 'center ' + -scrollTop * (i + 1) / 5 + 'px');
+                });
+            });
+        </script>
+    </body>
+</html>
