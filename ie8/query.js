@@ -4,7 +4,20 @@
     var query = (function () {
         var encodeURIComponent = window.encodeURIComponent,
             decodeURIComponent = window.decodeURIComponent,
-            search = location.search.slice(1);
+            query = {
+                allData: parse(),
+                getItem: getItem,
+                parse: parse,
+                stringify: stringify
+            };
+
+        //获取参数函数
+        function getItem(key) {
+            if (!key) {
+                return;
+            }
+            return query.allData[key];
+        }
 
         //将对象转为参数字符函数
         function stringify(obj, isNotnull) {
@@ -22,22 +35,20 @@
         }
 
         //将参数字符转为对象函数
-        function parse(qstr) {
-            if (typeof qstr !== 'string' || qstr.length === 0) return;
+        function parse(str) {
+            str || (str = location.search.slice(1));
 
-            var obj = {},
-                kvs = qstr.split('&');
-            for (var i = 0, len = kvs.length; i < len; i++) {
-                var kv = kvs[i].split('=');
-                obj[kv[0]] = decodeURIComponent(kv[1]);
+            // 字符
+            if (typeof str === 'string' && str) {
+                var rs = {},
+                    kvs = str.split('&');
+                for (var i = 0, len = kvs.length; i < len; i++) {
+                    var kv = kvs[i].split('=');
+                    rs[kv[0]] = decodeURIComponent(kv[1]);
+                }
+                return rs;
             }
-            return obj;
-        }
-
-        //获取参数函数
-        function getItem(key, queryStr) {
-            var obj = parse(queryStr || search);
-            return obj && obj[key];
+            return null;
         }
 
         return {

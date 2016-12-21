@@ -25,7 +25,7 @@
             str || (str = location.search.slice(1));
 
             // 字符
-            if (typeof str === 'string') {
+            if (typeof str === 'string' && str) {
                 var rs = {};
                 str.split('&').forEach(function (item) {
                     var kvs = item.split('=');
