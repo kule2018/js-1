@@ -6,7 +6,7 @@
             decodeURIComponent = window.decodeURIComponent,
             encodeURIComponent = window.encodeURIComponent,
             query = {
-                allData: parse(),
+                allData: parse() || {},
                 getItem: getItem,
                 parse: parse,
                 stringify: stringify
