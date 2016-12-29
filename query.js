@@ -1,8 +1,9 @@
-﻿(function () {
+﻿(function (window) {
 
     // 查询字符操作对象
     var query = (function () {
         var Object = window.Object,
+            location = window.location,
             decodeURIComponent = window.decodeURIComponent,
             encodeURIComponent = window.encodeURIComponent,
             query = {
@@ -28,8 +29,8 @@
             if (typeof str === 'string' && str) {
                 var rs = {};
                 str.split('&').forEach(function (item) {
-                    var kvs = item.split('=');
-                    rs[kvs[0]] = decodeURIComponent(kvs[1]);
+                    var kv = item.split('=');
+                    rs[kv[0]] = decodeURIComponent(kv[1]);
                 });
                 return rs;
             }
@@ -55,4 +56,4 @@
     // 添加到全局
     window.query = query;
 
-})();
+})(window);
