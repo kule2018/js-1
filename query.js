@@ -29,8 +29,10 @@
             if (typeof str === 'string' && str) {
                 var rs = {};
                 str.split('&').forEach(function (item) {
-                    var kv = item.split('=');
-                    rs[kv[0]] = decodeURIComponent(kv[1]);
+                    var kv = item.split('='),
+                        key = kv[0],
+                        val = kv[1];
+                    val !== undefined && (rs[key] = decodeURIComponent(val));
                 });
                 return rs;
             }

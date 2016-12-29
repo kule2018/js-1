@@ -43,8 +43,10 @@
                 var rs = {},
                     kvs = str.split('&');
                 for (var i = 0, len = kvs.length; i < len; i++) {
-                    var kv = kvs[i].split('=');
-                    rs[kv[0]] = decodeURIComponent(kv[1]);
+                    var kv = kvs[i].split('='),
+                        key = kv[0],
+                        val = kv[1];
+                    val !== undefined && (rs[key] = decodeURIComponent(val));
                 }
                 return rs;
             }
