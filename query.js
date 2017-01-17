@@ -7,7 +7,7 @@
             decodeURIComponent = window.decodeURIComponent,
             encodeURIComponent = window.encodeURIComponent,
             query = {
-                allData: parse() || {},
+                allData: parse(),
                 getItem: getItem,
                 parse: parse,
                 stringify: stringify
@@ -25,23 +25,22 @@
         function parse(str) {
             str || (str = location.search.slice(1));
 
+            var rs = {};
             // 字符
             if (typeof str === 'string' && str) {
-                var rs = {};
                 str.split('&').forEach(function (item) {
                     var kv = item.split('='),
                         key = kv[0],
                         val = kv[1];
                     val !== undefined && (rs[key] = decodeURIComponent(val));
                 });
-                return rs;
             }
-            return null;
+            return rs;
         }
 
         // 对象转为查询字符
         function stringify(obj) {
-            Object.keys(obj).map(function (key) {
+            return Object.keys(obj).map(function (key) {
                 return key + '=' + encodeURIComponent(obj[key]);
             }).join('&');
         }
