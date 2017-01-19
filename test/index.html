@@ -5,34 +5,18 @@
         <title>测试</title>
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
         <style>
-            .div
+            body
             {
-                color: #f00;
-            }
-
-
-            #div#div#div#div#div#div#div#div#div#div#div#div#div#div#div
-            {
-                color: #ff0;
+                font-size: 20px;
             }
         </style>
     </head>
     <body>
-        <script type="text/javascript" src="../zepto.js"></script>
+        <a id="btn">回跳</a>
         <script type="text/javascript">
-            //xhr对象
-            var xhr = new XMLHttpRequest();
-
-            //打开链接
-            xhr.open('POST', 'http://m.uczzd.cn/iflow/api/v1/article/4821427464223560710/related?&app=uc-iflow&sn=13453154497034288030&cid=100&bid=800&m_ch=500&zzd_from=uc-iflow&refReadId=d2c380c50ed65e4a2cccdf2b80118074&count=3&content_cnt=0&oppo=0&sp_gz=&_=1483687924991', true);
-
-            //设置header
-            xhr.setRequestHeader('hehe', 'xxxxx');
-
-            //发送数据
-            xhr.send(null);
-
-
+            document.getElementById('btn').onclick=function () {
+                location.href='http://release.fe.uczzd.cn/webview/freeflow?&uc_biz_str=S:custom|K:true|C:titlebar_fix&debug&phonenum=13333333333&carrierType=2&orderState=0';
+            };
         </script>
     </body>
 </html>
