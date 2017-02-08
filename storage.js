@@ -45,7 +45,11 @@
             localStorage.setItem(expirePrefix + key, expire);
         }
 
-        //获取
+        /**
+         * 获取
+         * @param {string} key 键
+         * @returns {string} 值
+         */
         function getItem(key) {
             var date = new Date(),
                 expire = localStorage.getItem(expirePrefix + key);
@@ -60,7 +64,10 @@
             }
         }
 
-        //清除
+        /**
+         * 清除
+         * @param {string} key 键
+         */
         function removeItem(key) {
             localStorage.removeItem(key);
             localStorage.removeItem(expirePrefix + key);
