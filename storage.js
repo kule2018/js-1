@@ -61,6 +61,7 @@
             //已过期就清除
             else {
                 removeItem(key);
+                return null;
             }
         }
 

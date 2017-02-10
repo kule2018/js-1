@@ -16,7 +16,8 @@ function setItem(key, val, days, hours) {
         return;
     }
 
-    let expire, now = new Date();
+    let expire,
+        now = new Date();
 
     //days参数是一个日期
     if (toString.call(days) === '[object Date]') {
@@ -55,6 +56,7 @@ function getItem(key) {
     //已过期就清除
     else {
         removeItem(key);
+        return null;
     }
 }
 
