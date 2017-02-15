@@ -128,7 +128,10 @@
     })();
 
 
-    // 导出对象
-    window._cdls = cdls;
+    if (typeof exports === 'object') {
+        return moduels.exports = cdls;
+    }
+
+    window.cdls = cdls;
 
 })(window);
