@@ -8,49 +8,23 @@
         </style>
     </head>
     <body>
-        <button id="btn">click</button>
-        <iframe src="http://m.uczzd.cn/webview/static/cacheMessage" id="ifr"></iframe>
-        <script type="text/javascript">
-            var ifrEl = document.getElementById('ifr');
-
-            var btnEl = document.getElementById('btn');
-            btnEl.onclick = function () {
-                ifrEl.contentWindow.postMessage('11', '*');
-                window.addEventListener('message',function (d) {
-                    console.log(d);
-                });
-            }
-        </script>
-        <!--<button id="btn_set_item">setItem</button>
+        <button id="btn_set_item">setItem</button>
         <button id="btn_get_item">getItem</button>
-        <button id="btn_remove_item">removeItem</button>
-        <button id="btn_clear">clear</button>
-        <button id="btn_reload_data">reloadData</button>
         <script type="text/javascript" src="cdls.js"></script>
         <script type="text/javascript">
             var cdLocalStorage = cdls({
-                cdlsUrl: 'http://100.84.47.149:5000/webview/cdls'
+                cdlsUrl: 'http://release.fe.uczzd.cn/webview/cdls'
             });
 
             document.addEventListener('click', function (evt) {
                 var id = evt.target.id;
                 if (id === 'btn_set_item') {
-                    return cdLocalStorage.setItem('test', 'test');
+                    return cdLocalStorage.setItem('__hide_cmts_', 'test');
                 }
                 if (id === 'btn_get_item') {
-                    return console.log(cdLocalStorage.getItem('test'));
-                }
-                if (id === 'btn_remove_item') {
-                    return cdLocalStorage.removeItem('test');
-                }
-                if (id === 'btn_clear') {
-                    return cdLocalStorage.clear();
-                }
-                if (id === 'btn_reload_data') {
-                    cdLocalStorage.reloadData();
-                    return console.log(cdLocalStorage.allData);
+                    return console.log(cdLocalStorage.getItem('__hide_cmts_'));
                 }
             });
-        </script>-->
+        </script>
     </body>
 </html>
