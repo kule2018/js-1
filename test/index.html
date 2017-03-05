@@ -13,9 +13,20 @@
     </head>
     <body>
         <script type="text/javascript">
-            var aEl = document.createElement('a');
-            aEl.href = 'http://sssdfda.dsfad.comdfaf/dfda';
-            console.log(aEl.hostname);
+            function Stack() {
+                this.store = [];
+                this.top = 0;
+
+                this.push = function (el) {
+                    this.store[this.top++] = el;
+                };
+                this.pop = function () {
+                    return this.store[--this.top];
+                };
+                this.peek = function () {
+                    return this.store[this.top - 1];
+                };
+            }
         </script>
     </body>
 </html>

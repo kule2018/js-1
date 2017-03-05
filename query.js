@@ -7,7 +7,7 @@
             decodeURIComponent = window.decodeURIComponent,
             encodeURIComponent = window.encodeURIComponent,
             query = {
-                allData: parse(),
+                queryData: parse(),
                 getItem: getItem,
                 parse: parse,
                 stringify: stringify
@@ -18,7 +18,7 @@
             if (!key) {
                 return;
             }
-            return query.allData[key];
+            return query.queryData[key];
         }
 
         // 查询字符转为对象

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>测试</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+        <style>
+            body
+            {
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function List() {
+                this.listSize = 0;
+                this.pos = 0;
+                this.dataStore = [];
+
+                this.clear = function () {
+
+                };
+                this.find = function (item) {
+                    for (var i = 0, len = this.dataStore.length; i < len; i++) {
+                        if (this.dataStore[i] === item) {
+                            return i;
+                        }
+                    }
+                    return -1;
+                };
+                this.toString = function () {
+                    return this.dataStore;
+                };
+                this.insert = function (item, after) {
+                    var insertPos = this.find(after);
+                    if (insertPos > -1) {
+                        this.dataStore.splice(insertPos, 0, item);
+                        this.listSize++;
+                        return true;
+                    }
+                    return false;
+                };
+                this.append = function (item) {
+                    this.dataStore[this.listSize++] = item;
+                };
+                this.remove = function (item) {
+                    var index = this.find(item);
+                    if (index > -1) {
+                        this.dataStore.splice(index, 1);
+                        this.listSize--;
+                        return true;
+                    }
+                    return false;
+                };
+                this.front = function () {
+                    this.pos = 0;
+                };
+                this.end = function () {
+                    this.pos = this.listSize - 1;
+                };
+                this.prev = function () {
+                    this.pos--;
+                };
+                this.next = function () {
+                    if (this.pos < this.listSize) {
+                        this.pos++;
+                    }
+                };
+                this.hasNext = function () {
+                    return this.pos < this.listSize;
+                };
+                this.hasPrev = function () {
+                    return this.pos > 0;
+                };
+                this.length = function () {
+                    return this.listSize;
+                };
+                this.currentPos = function () {
+                    return this.pos;
+                };
+                this.moveTo = function (pos) {
+                    this.pos = pos;
+                };
+                this.getElement = function () {
+                    return this.dataStore[this.pos];
+                };
+                this.contains = function (item) {
+                    return this.find(item) > -1;
+                };
+                this.clear = function () {
+                    this.dataStore.length = this.listSize = this.pos = 0;
+                };
+
+            }
+
+            var names = new List();
+            names.append('song');
+            names.append('zhang');
+            names.append('wang');
+            names.append('li');
+            names.append('zhao');
+
+            for (names.front(); names.hasNext(); names.next()) {
+                console.log(names.getElement());
+            }
+        </script>
+    </body>
+</html>

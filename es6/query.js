@@ -1,11 +1,14 @@
 ﻿const {Object, location, decodeURIComponent, encodeURIComponent} = window;
 
+// 所有的查询字符对象
+const queryData = parse();
+
 // 获取项
 function getItem(key) {
     if (!key) {
         return;
     }
-    return query.allData[key];
+    return queryData[key];
 }
 
 // 查询字符转为对象
@@ -32,13 +35,10 @@ function stringify(obj) {
     }).join('&');
 }
 
-
-// 查询字符操作对象
-const query = {
-    allData: parse(),
-    getItem: getItem,
-    parse: parse,
-    stringify: stringify
+export default {
+    getItem,
+    parse,
+    stringify
 };
 
-export default query;
+export {queryData};
