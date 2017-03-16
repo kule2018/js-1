@@ -1,100 +1,42 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <base href="//image.uc.cn/s/uae/g/1y/">
-        <link rel="dns-prefetch" href="//image.uc.cn">
+        <meta charset="utf8" />
+        <title>测试</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+        <style>
+            body
+            {
+                font-size: 20px;
+            }
+        </style>
         <script type="text/javascript">
-            var STATIC_HOST = '//image.uc.cn';
-            var STATIC_HOST_PREFIX = STATIC_HOST + '/s/uae/g/1y/';
+
         </script>
-
-
-        <script>function getPage() {
-            var e = window.navigator.userAgent, n = e.match(/(UCBrowser)/g) || e.match(/(UCNewsApp)/g), o = location.href, r = location.host, t = o.match(/\/?([^\/]*)(\?|\#)/gi), t = RegExp.$1, t = t.replace(".html", "");
-            if (!(r.indexOf("uczzd.cn") > -1 || r.indexOf("sm.cn") > -1 || r.indexOf("uc.cn") > -1 || r.indexOf(":") > -1))return t = "third_party";
-            switch (t) {
-                case"news":
-                    t = n || "share" !== getQueryString("pagetype") ? "index" : "share";
-                    break;
-                case"xissAllComments":
-                    t = "comments";
-                    break;
-                case"comment-detail":
-                    t = "detail";
-                    break;
-                case"my-comments":
-                    t = "my_comments"
-            }
-            return t
-        }
-        function getQueryString(e) {
-            var n = new RegExp("(\\?|^|&|#)" + e + "=([^&|^#]*)(&|$|#)", "i"), o = window.location.href.match(n), r = "";
-            return null != o && (r = decodeURIComponent(o[2])), r
-        }
-        window.UAT = {}, window.UAT.head_start = Date.now(), window.__UAE_ID__ = "2715", window.$$ucLog = window.$$ucLog || {app: window.__UAE_ID__, path: getPage() || "", from_app: getQueryString("app") || "", aid: getQueryString("aid") || "", uc_param_str: "ntnwcpfrve", chance: 50, errs: [], performs: {}}, function (e, n) {
-            var o = n.createElement("script"), r = n.getElementsByTagName("script")[0];
-            o.async = 1, e.performance && e.performance.timing ? o.src = "//bench.uc.cn/per/1.1/m/c/performance.min.js" : o.src = "//bench.uc.cn/per/1.1/m/c/performance.err.min.js", r.parentNode.insertBefore(o, r)
-        }(window, document), window.ucLogger = function (e, n) {
-            var o = function (e) {
-                var n = [{ev: "js_error", d_model: "xss_js_error_stat"}, {ev: "api_err", d_model: "xss_api_error_stat"}, {ev: "jssdk_err", d_model: "xss_jssdk_error_stat"}, {ev: "wechat_log", d_model: "xss_wechat_log_stat"}], o = "";
-                return n.forEach(function (n) {n.ev === e && (o = n.d_model)}), o
-            };
-            if ((window.$$ucLog.chance ? 100 * Math.random() < window.$$ucLog.chance : 100 * Math.random() < 30) && (n = n || ("https:" === location.protocol ? "https" : "http") + "://bench.uc.cn/c?uc_param_str=" + window.$$ucLog.uc_param_str, e.app_id = window.$$ucLog.app, e.path = window.$$ucLog.path, e.from_app = window.$$ucLog.from_app, e.aid = window.$$ucLog.aid, e.d_model = o(e.ev), Object.keys(e).forEach(function (n) {e[n] || delete e[n]}), e = JSON.stringify(e), !navigator.sendBeacon || !navigator.sendBeacon(n, e))) {
-                var r = new XMLHttpRequest;
-                r.open("post", n, !0), r.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"), r.send(e)
-            }
-        }, window.addEventListener("error", function (e) {window.$$ucLog && window.$$ucLog.errs && window.$$ucLog.errs.push({ev: "js_error", from_app: window.$$ucLog.from_app, aid: window.$$ucLog.aid, uc_param_str: window.$$ucLog.uc_param_str, host: location.origin, pathname: location.pathname, msg: e.message, file: e.filename, line: e.lineno, col: e.colno, stack: e.error, d_model: "xss_js_error_stat", ua: navigator.userAgent})}, !1)</script>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta http-equiv="Cache-Control" content="no-cache">
-        <meta name="viewport"
-              content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-        <meta name="MobileOptimized" content="320">
-        <meta name="referrer" content="never">
-        <meta name="uc-biz-native-gallery" content="no">
-        <title>瞎操心什么呀! 瞧瞧华为工资单, 深圳高房价根本不是事儿</title>
-
-        <link rel="shortcut icon" href="http://zzd.sm.cn/image-sm/icon/ucbrowser.ico" type="image/vnd.microsoft.icon" />
-        <link rel="icon" href="http://zzd.sm.cn/image-sm/icon/ucbrowser.ico" type="image/vnd.microsoft.icon" />
-
-        <script>function loadScript(e, t) {
-            var o, r = document.getElementsByTagName("script")[0], n = (document.getElementsByTagName("head")[0], function () {a.onerror = a.onload = null, clearTimeout(o)}), a = document.createElement("script");
-            a.type = "text/javascript", a.charset = "utf-8", a.async = !1, a.timeout = 6e4, a.src = e, t && (a.async = 1), a.onerror = a.onload = n, o = setTimeout(n, 6e4), r.parentNode.insertBefore(a, r)
-        }
-        try {!function (e) {e.$$ucLog && e.$$ucLog.performs && e.UAT && e.UAT.head_start && (e.$$ucLog.performs.ws = +new Date - e.UAT.head_start)}(window)} catch (e) {console.error(e)}</script>
-
-
     </head>
-    <body data-newsDate=''>
-
-        <script>console.log("body start")</script>
-
-        <div id="testLog" class="fn-hide"></div>
-        <div id="windownbg" class="fn-hide"></div>
-        <div id="tip" class="fn-hide"></div>
-        <complete id="pageLoadStatus"></complete>
+    <body>
 
         <script type="text/javascript">
-            try {
-                var xissJsonData = {"id": "4821427464223560710", "recoid": "", "title": "瞎操心什么呀! 瞧瞧华为工资单, 深圳高房价根本不是事儿", "subhead": "", "url": "http://cp.dtcj.com/uc/keji/575121f667157b1fb4dbc836.html?zzd_from=uc-iflow&sm_article_id=4821427464223560710&dl_type=3&uc_biz_str=S%3Acustom%7CC%3Aiflow_ncmt&rd_type=reco&sp_gz=0&cid=100&app=uc-iflow", "hyperlinks": [], "strategy": 255, "politics": 0, "summary": "", "content": "<p>摘要：世界就是这么不公平，越有钱的人群，越来越有钱。人家华为人拼命工作，赚取高薪，闷头买房，沉淀增值财富，你买不起房，却在替人家操心房价高。</p><!--{img:0}--><p>华为逃离深圳的讨论持续发酵，主流观点认为，正是高房价逼走了华为。这两天又有消息称，深圳近期1.5万家企业外迁，搞得市长都不得不出面辟谣：系个别媒体误读。</p><p>所有关于此问题的讨论都似曾相识，每隔几年就会兴起一波，高房价逼走了年轻人，高房价影响城市竞争力，高房价逼走了企业......</p><p>真的是高房价逼走了华为吗？还是说，大众只是通过华为事件，发泄对高房价的不满？发泄情绪之余，有人提供过靠谱的数据分析吗？</p><p>借着这个机会，向大家普及下，华为人到底多有钱，深圳房价到底能否逼走华为。</p><p>[<strong>年入500万的有千人左右]</strong></p><p>先来看看华为某位22级员工的收入，注意，先准备好擦口水的纸巾。</p><p>1、工资情况</p><p>2014年9月-2015年6月的每月标准工资为人民币6.5万（税前）。</p><p>2015年7月-2015年8月的每月标准工资为人民币8.25万（税前）。</p><p>2、分红情况</p><p>2014年度分红金额为人民币307万1160元（税后），发放时间为2015年4月1日。</p><p>2013年度分红为人民币237万6108元（税后），发放时间为2014年4月1日。</p><p>3、奖金情况</p><p>2014年度奖金为46.4755万（税后），发放时间为2015年4月20日。</p><p>2013年度奖金为46.4755万（税后），发放时间为2014年4月16日。</p><p>4、补助发放情况</p><p>2013年8月至2015年8月，海外离家补助实发金额，84万3862元（税后）。</p><p>2013年8月至2015年8月，海外艰苦补助实发金额，8万1957元（税后）。</p><p>2013年8月至2015年8月，海外伙食补助实发金额，6261元（税后）。</p><p>也就是说，这位哥们，2015年工资一年税前99万（税前），分红307万（税后），奖金46.5万（税后），补助46.6万（税后），上述4项目加起来，收入500万。</p><p>据悉，这位华为员工，某地区部门销售副总裁，职级22级，在华为有千人左右，职务一般是地区部副总裁及以上，产品线副总裁级别及以上。</p><!--{img:1}--><div id=\"hidtag\"></div><!--{img:2}--><p>（华为给法院的回函透露了收入状况）</p><p>[<strong>年薪百万的超过1万人]</strong></p><p>华为实行<strong>职级制度</strong>，一般本科和硕士毕业生进入华为职级是13级，博士可以到15级，2年升一级，海外的升级速度略快，但都是越往上越难升，到17、18级一般是基层和中层管理人员，21-22级则到了总裁、副总裁级别。</p><p>华为收入的大头在于股票分红，<strong>每年华为利润的大部分都会以分红和升值形势，返还给员工</strong>。“一般来华为2年后才有股票，不过现在针对15级以下员工已经不发股票了，改为发TUP，类似于股票，不要用钱买，但只有5年有效期，每股分钱是一样的。”</p><p>2015年，华为的虚拟股票分红，每股分1.95元，升值0.91元，合计2.86元。员工股票数量和来华为的年限强相关，如果是17-18级的员工，03-04年左右进华为的，配股普遍小几十万股，税前分红大约60-70万。如果是2000年前来的，分红能过1百万。20级以上的大约2-3千人，今年光分红有200-250万。职级21-22级的，<strong>税前分红+升值超过500万</strong>。</p><p>奖金也是很可观的一块，但这一部分不同体系差别很大，和绩效也强相关。毕业后来华为3年的，年终奖一般在15万左右。</p><p><strong> 总体而言，入职10年，绩效中等以上，职级16-17级，年薪税前50-100万。职级18级以上，考评中等以上，年薪税前都超100万，数目有数千人，加上海外常驻人员外派补助，年薪税前超百万人数估计超万人。</strong></p><!--{img:3}--><p>[<strong>2015华为员工收入足以买下1.5个深圳新房总成交量]</strong></p><!--{img:4}--><p>（不算分红，华为去年花在员工身上1008亿）</p><p>根据华为的2015年报，华为2015年的工资，薪金，福利、时间单位计划、离职后计划的总开支接近1008亿人民币！加上净利润369亿（绝大部分分红+股票升值给员工），<strong>华为花在员工上的钱达1377亿，17万员工，人均年收入超过80万。</strong></p><p><strong>1377亿是个什么概念呢</strong>？看看深圳市2015年的全年新房市场成交状况。“2015年全年新建住宅成交均价32898元/平方米，成交66450套，成交金额2225.8亿元。”</p><p>也就是说，如果按照首付4成计算，2015年，1377亿能买下价值3442亿的房产，深圳2015年全年新房成交才2225.8亿，华为员工收入，足够买下1.5个深圳。</p><p>2015年，深圳楼盘成交金额第一名是华润城113亿，第二名招商双玺79.44亿，顶豪深圳湾壹号成交了54.15亿。华为员工收入，去年足够买下30个华润城，43个招商双玺，63个深圳湾壹号。</p><p>如果按照5万价格，买一套89平总价450万，那华为去年花在员工上的钱，足以买7.6万套。</p><!--{img:5}--><p><strong> [华为人走到哪里，房子买到哪里]</strong></p><p>地产圈内都知道，华为人是深圳各个楼盘最常见的购房团体，往往少则十几个，多则几十个抱团购房。开发商们对华为是又爱又怕，爱的是其强劲的购买力，怕的是其抱团谈判和维权意识，买房时抱团要额外折扣，出了点问题就抱团维权，为此，有些不愁卖的热盘，甚至明确表示不欢迎华为团购。</p><p>据悉，2015年华为的股票分红在2016年4月发放，奖金也是在5月份已经到账，最近正是华为人手头最宽裕的时候。</p><p>你们坐在电脑后当键盘侠，在网络上义愤填膺，担心高房价赶走华为。在淘哥看来，完全是在替华为人瞎操心，典型的皇帝不急太监急。<strong>人家正拿着几百万在全深圳乃至东莞松山湖，大举扫楼</strong>。</p><p>淘哥了解到的消息是，在东莞松山湖某楼盘，上周华为一位员工一口气买了7套房。在龙岗中心城，金地龙城中央M公寓上周末认筹，华为人认了20多个筹。在龙华，很多华为人还盯住了鸿荣源壹城中心。</p><p>其实，华为人是到哪里买哪里，原来02年时，华为很多部门还在南山科技园北区办公，大量老华为人买在后海蔚蓝海岸。后来华为搬迁到坂田，万科城迎来了很多华为业主。2012年开始，一批批的华为人开始在松山湖买房，因为华为终端总部选址松山湖。前年，坂田佳兆业城市广场开盘，一大批华为人出没。因为常驻海外，有些华为人甚至在全世界各大城市置业。</p><p>蔚蓝海岸房价从4000变成了9万，万科城从5000变成了5万5，松山湖从7000变成了2.2万，佳兆业城市广场更是因锁盘事件，月供都没开始就从2万变成了5万多。有时世界就是这么不公平，越有钱的人群，越来越有钱。人家华为人拼命工作，赚取高薪，闷头买房，沉淀增值财富，你买不起房，却在替人家操心房价高。</p><p>华为人有钱，又聪明，从房子上尝到甜头后，很多人分红和年终奖一拿到手，就买入房产。还会相互交流经验，合伙买房。</p><p>华为人沿着梅观大道，从龙华坂田一路买到观澜、松山湖，在观澜，鹭湖国际住区是华为人买的最多的一个区域。据悉，根据2015年7约1日深圳市交委发布的《梅观高速公路市政化改造交通详细规划初步方案》梅观路将进行双向14车道的拓宽和市政化改造，在鹭湖周边规划了求知路和环观南路两个互通式立交。</p><p>金地1号院别墅，近期成交了一套联排别墅，194平米总价约1500万，买家来自华为的。在此之前，还有5位华为人买了金地1号院的联排别墅，1300-1900多万的总价。这个小区2014年年底推高层时，华为人就一口气买了40套，2万入手现在4.5万，还没入伙就爆赚翻倍。顶端产品天字号别墅——金地天悦湾，也有3位华为豪客购买。现场销售总监透露华为人买鹭湖的原因时说：“华为目前去1号院走五和大道转环观南路约10分钟，未来梅观大道在求知路开口，走梅观大道约5分钟。”</p><p>据悉，金地1号院目前还剩下9套别墅，包括194平米的联排6套，220平米的双拼3套，单价6万-8.5万，总价1200万至1900万间。194平米的联排别墅，实际室内使用面积有约420平，再加上花园和停车位，总使用面积约500平。</p><!--{img:6}--><p>（鹭湖国际住区是华为人在观澜买得最多的区域）</p>", "thumbnails": [{"url": "http://image.uczzd.cn/17487106741247231608.jpg?id=0", "width": 779, "height": 513, "type": "jpg", "preload": 0, "daoliu_url": "", "daoliu_title": ""}, {"url": "http://image.uczzd.cn/14736067066974733868.jpg?id=0", "width": 469, "height": 576, "type": "jpg", "preload": 0, "daoliu_url": "", "daoliu_title": ""}, {"url": "http://image.uczzd.cn/12836598272723012529.jpg?id=0", "width": 412, "height": 426, "type": "jpg", "preload": 0, "daoliu_url": "", "daoliu_title": ""}], "images": [{"title": "", "url": "http://image.uczzd.cn/17487106741247231608.jpg?id=0", "description": "", "index": 0, "width": 779, "height": 513, "preload": 0, "type": "jpg", "focus": "", "original_url": "", "daoliu_url": "", "daoliu_title": "", "gallery_id": "", "gallery_type": 1, "is_hd": 0}, {"title": "", "url": "http://image.uczzd.cn/14736067066974733868.jpg?id=0", "description": "", "index": 1, "width": 469, "height": 576, "preload": 0, "type": "jpg", "focus": "", "original_url": "", "daoliu_url": "", "daoliu_title": "", "gallery_id": "", "gallery_type": 1, "is_hd": 0}, {"title": "", "url": "http://image.uczzd.cn/12836598272723012529.jpg?id=0", "description": "", "index": 2, "width": 412, "height": 426, "preload": 0, "type": "jpg", "focus": "", "original_url": "", "daoliu_url": "", "daoliu_title": "", "gallery_id": "", "gallery_type": 1, "is_hd": 0}, {"title": "", "url": "http://image.uczzd.cn/12873334647873624803.jpg?id=0", "description": "", "index": 3, "width": 640, "height": 1138, "preload": 0, "type": "jpg", "focus": "", "original_url": "", "daoliu_url": "", "daoliu_title": "", "gallery_id": "", "gallery_type": 1, "is_hd": 0}, {"title": "", "url": "http://image.uczzd.cn/12120893181542807200.jpg?id=0", "description": "", "index": 4, "width": 532, "height": 432, "preload": 0, "type": "jpg", "focus": "", "original_url": "", "daoliu_url": "", "daoliu_title": "", "gallery_id": "", "gallery_type": 1, "is_hd": 0}, {"title": "", "url": "http://image.uczzd.cn/4270564099066647028.jpg?id=0", "description": "", "index": 5, "width": 640, "height": 592, "preload": 0, "type": "jpg", "focus": "", "original_url": "", "daoliu_url": "", "daoliu_title": "", "gallery_id": "", "gallery_type": 1, "is_hd": 0}, {"title": "", "url": "http://image.uczzd.cn/7490718735687290177.jpg?id=0", "description": "", "index": 6, "width": 640, "height": 480, "preload": 0, "type": "jpg", "focus": "", "original_url": "", "daoliu_url": "", "daoliu_title": "", "gallery_id": "", "gallery_type": 1, "is_hd": 0}], "album": {"intro": "", "enabled": false, "cover_image": "", "img_pg_type": 0}, "tags": ["华为", "深圳", "股票"], "audios": [], "category": ["科技", "互联网"], "videos": [], "cid": 1525483516, "contentExtHyperlinks": [], "contentExtVotes": [], "subArticle": false, "title_icon": "", "grab_time": 1464935185000, "clickable_url": true, "item_type": 0, "style_type": 5, "op_mark": "", "op_mark_icolor": 0, "op_mark_iurl": "", "editor_icon": "", "editor_nickname": "", "op_info": "push_dim:全量;title_color:0;op_type:全量;item_class:科技`互联网;", "post_like_url": "", "post_dislike_url": "", "app_download_url": "", "app_download_desc": "", "download_type": "", "site_logo": {"id": 16796, "style": 1, "desc": "", "link": "", "img": {"url": "http://image.uczzd.cn/9646032401948061003.jpg?id=0", "width": 50, "height": 140, "type": "", "preload": 0, "daoliu_url": "", "daoliu_title": ""}}, "enable_dislike": true, "is_drop_down_style": false, "dislike_infos": [{"type": 0, "code": 1, "msg": "重复推荐", "with_review": 0}, {"type": 0, "code": 2, "msg": "华为", "with_review": 0}, {"type": 0, "code": 4, "msg": "科技", "with_review": 0}, {"type": 0, "code": 3, "msg": "互联网", "with_review": 0}, {"type": 0, "code": 5, "msg": "来源:DT财经", "with_review": 0}, {"type": 1, "code": 13, "msg": "内容低俗", "with_review": 0}, {"type": 1, "code": 16, "msg": "标题夸张", "with_review": 0}, {"type": 1, "code": 11, "msg": "广告软文", "with_review": 0}], "reco_desc": "", "news_poi_mark": {}, "item_ext_bar": {}, "source_name": "DT财经", "origin_src_name": "21财闻汇", "publish_time": 1464951894000, "content_type": 0, "daoliu_type": 3, "original_url": "http://cp.dtcj.com/uc/keji/575121f667157b1fb4dbc836.html", "content_length": 3788, "cmt_cnt": 1688, "load_priority": 0, "use_cache": 0, "fresh_time": 0, "article_like_cnt": 200, "like_cnt": 2, "dislike_cnt": 0, "view_cnt": 0, "share_cnt": 0, "read_id": "", "query_tags": [{"tag": "华为", "url": ""}, {"tag": "深圳", "url": ""}, {"tag": "股票", "url": ""}], "video_tags": [{"real_tag": "华为", "style": "", "url": "", "alias_tag": ""}, {"real_tag": "深圳", "style": "", "url": "", "alias_tag": ""}, {"real_tag": "股票", "style": "", "url": "", "alias_tag": ""}], "show_impression_url": "", "wm_author": {}, "participant_cnt": 0, "avg_score": 0, "matched_tags": [], "character_cards": [], "hot_cmts": [], "cmt_url": "http://release.fe.uczzd.cn/webapp/webview/xissAllComments?app=uc-iflow&aid=4821427464223560710&cid=100&zzd_from=uc-iflow&uc_param_str=dnnivebichfrmintcpgieiwidsudpf&uc_biz_str=S:custom|C:comment|N:true", "cmt_enabled": true, "redirect_ch_id": 242677432, "redirect_ch_name": "互联网", "redirect_ch_img": "http://image.uczzd.cn/5292494507143442273.jpg?id=0", "redirect_ch_desc": "更多优质新鲜互联网资讯，一触即达！", "zzd_url": "http://release.fe.uczzd.cn/webapp/webview/article/news.html?app=uc-iflow&aid=4821427464223560710&cid=100&zzd_from=uc-iflow&uc_param_str=dndseiwifrvesvntgipf&recoid=&rd_type=reco", "is_wemedia": false, "share_url": "http://release.fe.uczzd.cn/webapp/webview/article/news.html?app=uc-iflow&aid=4821427464223560710&cid=100&zzd_from=uc-iflow&uc_param_str=dndseiwifrvesvntgipf&recoid=&rd_type=share&pagetype=share&btifl=100", "ad_content": {}, "qiqu_info": {}, "title_img_hyperlink": {}, "content_ext_audios": [], "reco_reason_type": -1, "reco_reason": "", "reco_tag_desc": "", "video_immersive_mode": false, "daoliu_switch": {"icon": false, "relate": false, "comment": false, "img_desc": true, "hot_query": false}, "event_tag_info": []};
-                var zzdReadId = '04ef7fb0d4671e8c021b26b99bae41ef';
-                var firstImgLazyLoad = 'true';
-                var isHasCachePage = location.href.indexOf('?') === -1 && location.href.indexOf("#") >= 0;
-            } catch (e) {
-                window.location.href = "//m.uczzd.cn/webview/error";
+            function ajax(url, method) {
+                var xhr = getXHR();
+                xhr.onreadystatechange = function () {
+                    console.log('xhr.readyState:' + this.readyState);
+                }
+                xhr.onloadstart = function () {
+                    console.log('onloadStart');
+                }
+                xhr.onload = function () {
+                    console.log('onload');
+                }
+                xhr.open(method, url, true);
+                xhr.setRequestHeader('Cache-Control', 3600);
+                xhr.send();
             }
+            console.log(1111);
+            var timer = setTimeout(function () {
+                console.log('setTimeout');
+            }, 0);
+            ajax('https://user-gold-cdn.xitu.io/2017/3/15/c6eacd7c2f4307f34cd45e93885d1cb6.png', 'GET');
         </script>
-
-        <script crossorigin="anonymous" type="text/javascript" src="xisspages-old-xiss/prod/article.2b0d4c3374f5e2e9f81f.js"></script>
-
-        <script type="text/javascript" src="xisspages-old-xiss/prod/article.2b0d4c3374f5e2e9f81f.js"></script>
-
-        <div style="height:0;width:0;overflow:hidden;position:absolute;bottom:-9999px;left:-9999px;">
-            <img src="http://image.zzd.sm.cn/16836532799263389551.jpg?id=0" />
-        </div>
-
-        <script>console.log("body end")</script>
-
-
     </body>
 </html>

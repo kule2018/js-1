@@ -12,17 +12,22 @@
         </style>
         <script type="text/javascript">
             window.addEventListener('error', function (err) {
-                var info = {};
-                for (var p in err) {
-                    info[p] = err[p] + '';
-                }
-                console.log(JSON.stringify(info));
+                var errInfo = {
+                    message: err.message,
+                    lineno: err.lineno,
+                    colno: err.colno,
+                    filename: err.filename
+                };
+                console.log(errInfo);
+                console.log(err);
             });
         </script>
     </head>
     <body>
 
         <script type="text/javascript">
+            var a = {};
+            a.b();
             var a = b;
         </script>
     </body>
