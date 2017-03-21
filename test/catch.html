@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>测试</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+        <style>
+            body
+            {
+                font-size: 20px;
+            }
+        </style>
+        <script type="text/javascript">
+
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript" src="https://soneway.github.io/jq/jq.js"></script>
+        <script type="text/javascript">
+            $(window).on('error', function (e) {
+                console.dir(arguments);
+            });
+        </script>
+
+        <script type="text/javascript">
+            (function () {
+                try {
+                    var a = b;
+                }
+                catch (e) {
+                    var
+                    $(window).trigger('error', e);
+                }
+            })();
+
+            (function () {
+                console.log(111);
+            })();
+        </script>
+    </body>
+</html>
