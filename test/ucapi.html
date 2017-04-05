@@ -58,17 +58,26 @@
             }
           });
 
-          /*ucapi.comment.notifyCommentCount({
+          ucapi.comment.notifyCommentCount({
             aid: '4821427464223560710',
-            count: 555
-          });*/
+            count: 555,
+            success: function(e) {
+              alert(JSON.stringify(e));
+            },
+            fail: function(e) {
+              alert(JSON.stringify(e));
+            }
+          });
 
-          ucapi.comment.notifySendResult({
+          /*ucapi.comment.notifySendResult({
             id: '550309140',
             aid: '4821427464223560710',
             status: 1,
-            errCode: status
-          });
+            errCode: status,
+            fail: function(e) {
+              alert(JSON.stringify(e));
+            }
+          });*/
 
 
 
