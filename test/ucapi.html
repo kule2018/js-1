@@ -33,7 +33,7 @@
               "ori_url": "http://cp.dtcj.com/uc/keji/575121f667157b1fb4dbc836.html",
               "ch_id": "100",
               "item_type": 0,
-              "daoliu_type": 0,
+              "daoliu_type": 3,
               "title": "瞎操心什么呀! 瞧瞧华为工资单, 深圳高房价根本不是事儿",
               "thumbnails": [
                 {"url": "http://image.uczzd.cn/17487106741247231608.jpg?id=0", "width": 779, "height": 513, "type": "jpg", "preload": 0, "daoliu_url": "", "daoliu_title": ""},
@@ -68,6 +68,10 @@
               alert(JSON.stringify(e));
             }
           });
+
+          ucapi.comment.onSendComment3rd = function(data) {
+            alert(JSON.stringify(data));
+          };
 
           /*ucapi.comment.notifySendResult({
             id: '550309140',
