@@ -32,7 +32,7 @@
               "url": "http://100.84.243.49:5000/webview/article?app=uc-iflow&aid=4821427464223560710&cid=100",
               "ori_url": "http://cp.dtcj.com/uc/keji/575121f667157b1fb4dbc836.html",
               "ch_id": "100",
-              "item_type": 0,
+              "item_type": 2,
               "daoliu_type": 3,
               "title": "瞎操心什么呀! 瞧瞧华为工资单, 深圳高房价根本不是事儿",
               "thumbnails": [
@@ -58,19 +58,19 @@
             }
           });
 
-          ucapi.comment.notifyCommentCount({
+          /*ucapi.comment.notifyCommentCount({
             aid: '4821427464223560710',
             count: 555,
             success: function(e) {
-              alert(JSON.stringify(e));
+              alert('notifyCommentCount success ' + JSON.stringify(e));
             },
             fail: function(e) {
-              alert(JSON.stringify(e));
+              alert('notifyCommentCount fail ' + JSON.stringify(e));
             }
-          });
+          });*/
 
           ucapi.comment.onSendComment3rd = function(data) {
-            alert(JSON.stringify(data));
+            alert('onSendComment3rd ' + JSON.stringify(data));
           };
 
           /*ucapi.comment.notifySendResult({
