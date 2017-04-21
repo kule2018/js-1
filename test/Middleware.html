@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>测试</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div class="body_box">
+
+        </div>
+
+        <script type="text/javascript">
+          function Middleware() {
+            this.cache = [];
+          }
+
+          Middleware.prototype.use = function(fn) {
+            if (typeof fn !== 'function') {
+              throw 'middleware must be a function';
+            }
+            this.cache.push(fn);
+            return this;
+          };
+
+          Middleware.prototype.next = function() {
+            const middlewares = this.middlewares;
+            if (middlewares && middlewares.length) {
+              const ware = middlewares.shift();
+              ware.call(this, this.next.bind(this));
+            }
+          };
+
+          Middleware.prototype.handleRequest = function() {
+            this.middlewares = this.cache.slice(0);
+            this.next();
+          };
+
+          const middleware = new Middleware();
+          middleware.use(function(next) {
+            console.log(1);
+            // next是Middleware.prototype.next,用于调用middlewares数组中下一个fn
+            next();
+          });
+          middleware.use(function(next) {
+            console.log(2);
+          });
+          middleware.use(function(next) {
+            console.log(3);
+          });
+          middleware.use(function(next) {
+            console.log(4);
+          });
+          middleware.handleRequest();
+
+        </script>
+    </body>
+</html>
