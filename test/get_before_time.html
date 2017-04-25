@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>测试</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div class="body_box">
+
+        </div>
+
+        <script type="text/javascript">
+          function getBeforeTime(time) {
+            if (!time instanceof Date) {
+              throw 'time必须为Date';
+            }
+
+            const timeSpan = Date.now() - time;
+            const spanDate = new Date(timeSpan);
+            const originYear = new Date(0).toISOString().slice(0, 4);
+
+            const units = ['年', '月', '天', '小时', '分', '秒'];
+            const nums = spanDate.toISOString().split(/-|T|:|\./);
+
+            return units.map((item, index) => {
+              let num = nums[index];
+              if (index === 0) {
+                num -= originYear;
+              }
+              return +num + item;
+            }).join('');
+          }
+        </script>
+    </body>
+</html>
