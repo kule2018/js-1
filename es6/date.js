@@ -35,19 +35,23 @@ function getBeforeTime(opts = {}) {
   const originNums = new Date(0).toISOString().split(splitReg);
 
   // 获取的多少年月日前信息数组
-  const rsArray = units.map((item, index) => {
-    let num = spanNums[index];
-    num -= originNums[index];
-    return +num + item;
+  const rsArray = spanNums.map((item, index) => {
+    item -= originNums[index];
+    return item;
   });
 
   switch (type) {
+    // x年x月x天
     case 1: {
-      return rsArray.join('');
+      return units.map((item, index) => {
+        return rsArray[index] + item;
+      }).join('');
     }
+    // [年, 月, 日]
     case 2: {
       return rsArray;
     }
+    // x年前或者x月
     case 3: {
       let rsStr = rightNow;
       for (let i = 0, len = rsArray.length; i < len; i++) {
