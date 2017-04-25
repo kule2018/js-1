@@ -20,14 +20,12 @@
             }
 
             const timeSpan = Date.now() - time;
-            const spanDate = new Date(timeSpan);
+            const spanNums = new Date(timeSpan).toISOString().split(/[^\d]/);
             const originNums = new Date(0).toISOString().split(/[^\d]/);
 
             const units = ['年', '月', '天', '小时', '分', '秒'];
-            const nums = spanDate.toISOString().split(/[^\d]/);
-
             return units.map((item, index) => {
-              let num = nums[index];
+              let num = spanNums[index];
               num -= originNums[index];
               return +num + item;
             }).join('');
