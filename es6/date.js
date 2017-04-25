@@ -19,7 +19,7 @@ function getTimespan(ts) {
 function getBeforeTime(opts = {}) {
   // 配置项
   opts = Object.assign({}, getBeforeTime.defaults, opts);
-  const {date, splitReg, units, type} = opts;
+  const {date, splitReg, units, type, rightNow} = opts;
 
   // 目标时间
   if (!date instanceof Date) {
@@ -48,7 +48,7 @@ function getBeforeTime(opts = {}) {
       return rsArray;
     }
     case 3: {
-      let rsStr;
+      let rsStr = rightNow;
       for (let i = 0, len = rsArray.length; i < len; i++) {
         const item = rsArray[i];
         if (item) {
@@ -65,7 +65,9 @@ getBeforeTime.defaults = {
   // 年月日等单位信息
   units: ['年', '月', '天', '小时', '分', '秒'],
   // 返回数据类型(1: x年x月x天前, 2: [年, 月, 日], 3: x年前或者x月前)
-  type: 1
+  type: 1,
+  // 刚刚信息
+  rightNow: '刚刚'
 };
 
 
