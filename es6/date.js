@@ -1,6 +1,6 @@
 function getDateStr(date) {
   if (!date instanceof Date) {
-    throw 'time必须为Date';
+    throw '必须为Date';
   }
 
   const isoStr = date.toISOString();
@@ -19,28 +19,28 @@ function getTimespan(ts) {
 function getBeforeTime(opts = {}) {
   // 配置项
   opts = Object.assign({}, getBeforeTime.defaults, opts);
+  const {date, splitReg, units, type} = opts;
 
   // 目标时间
-  const date = opts.date;
   if (!date instanceof Date) {
-    throw 'time必须为Date';
+    throw '必须为Date';
   }
 
   // 时间间隔
   const timeSpan = Date.now() - date;
   // 时间间隔提取出的年月日等数字信息
-  const spanNums = new Date(timeSpan).toISOString().split(/[^\d]/);
+  const spanNums = new Date(timeSpan).toISOString().split(splitReg);
   // 时间原点提取提取出的年月日等数字信息
-  const originNums = new Date(0).toISOString().split(/[^\d]/);
+  const originNums = new Date(0).toISOString().split(splitReg);
 
   // 获取的多少年月日前信息数组
-  const rsArray = opts.units.map((item, index) => {
+  const rsArray = units.map((item, index) => {
     let num = spanNums[index];
     num -= originNums[index];
     return +num + item;
   });
 
-  switch (opts.type) {
+  switch (type) {
     case 1: {
       return rsArray.join('');
     }
@@ -48,11 +48,20 @@ function getBeforeTime(opts = {}) {
       return rsArray;
     }
     case 3: {
-      return rsArray.filter((item) => {return item})[0];
+      let rsStr;
+      for (let i = 0, len = rsArray.length; i < len; i++) {
+        const item = rsArray[i];
+        if (item) {
+          rsStr = item + units[i];
+          break;
+        }
+      }
+      return rsStr;
     }
   }
 }
 getBeforeTime.defaults = {
+  splitReg: /[^\d]/,
   // 年月日等单位信息
   units: ['年', '月', '天', '小时', '分', '秒'],
   // 返回数据类型(1: x年x月x天前, 2: [年, 月, 日], 3: x年前或者x月前)
