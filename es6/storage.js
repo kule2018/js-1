@@ -11,33 +11,33 @@ const expirePrefix = '_expire_';
  * @param {number} hours 过期小时数
  */
 function setItem(key, val, days, hours) {
-    // 如设值为空
-    if (val === undefined || val === null) {
-        return;
-    }
+  // 如设值为空
+  if (val === undefined || val === null) {
+    return;
+  }
 
-    let expire,
-        now = new Date();
+  let expire,
+    now = new Date();
 
-    //days参数是一个日期
-    if (toString.call(days) === '[object Date]') {
-        expire = +days;
-    }
-    //过期天数
-    else if (typeof days === 'number') {
-        expire = now.setDate(now.getDate() + days);
-    }
-    //过期小时数
-    else if (typeof hours === 'number') {
-        expire = now.setHours(now.getHours() + hours);
-    }
-    //默认过期天数为1天
-    else {
-        expire = now.setDate(now.getDate() + 1);
-    }
+  //days参数是一个日期
+  if (toString.call(days) === '[object Date]') {
+    expire = +days;
+  }
+  //过期天数
+  else if (typeof days === 'number') {
+    expire = now.setDate(now.getDate() + days);
+  }
+  //过期小时数
+  else if (typeof hours === 'number') {
+    expire = now.setHours(now.getHours() + hours);
+  }
+  //默认过期天数为1天
+  else {
+    expire = now.setDate(now.getDate() + 1);
+  }
 
-    localStorage.setItem(key, val);
-    localStorage.setItem(expirePrefix + key, expire);
+  localStorage.setItem(key, val);
+  localStorage.setItem(expirePrefix + key, expire);
 }
 
 /**
@@ -46,18 +46,18 @@ function setItem(key, val, days, hours) {
  * @returns {string} 值
  */
 function getItem(key) {
-    const date = new Date(),
-        expire = localStorage.getItem(expirePrefix + key);
+  const date = new Date(),
+    expire = localStorage.getItem(expirePrefix + key);
 
-    //判断过期时间,如未过期
-    if (expire && +expire > +date) {
-        return localStorage.getItem(key);
-    }
-    //已过期就清除
-    else {
-        removeItem(key);
-        return null;
-    }
+  //判断过期时间,如未过期
+  if (expire && +expire > +date) {
+    return localStorage.getItem(key);
+  }
+  //已过期就清除
+  else {
+    removeItem(key);
+    return null;
+  }
 }
 
 /**
@@ -65,15 +65,14 @@ function getItem(key) {
  * @param {string} key 键
  */
 function removeItem(key) {
-    localStorage.removeItem(key);
-    localStorage.removeItem(expirePrefix + key);
+  localStorage.removeItem(key);
+  localStorage.removeItem(expirePrefix + key);
 }
 
-// storage操作对象
-const storage = {
-    setItem,
-    getItem,
-    removeItem
-};
 
-export default storage;
+// storage操作对象
+export default {
+  setItem,
+  getItem,
+  removeItem
+};
