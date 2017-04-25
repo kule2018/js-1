@@ -24,7 +24,7 @@
             const originYear = new Date(0).toISOString().slice(0, 4);
 
             const units = ['年', '月', '天', '小时', '分', '秒'];
-            const nums = spanDate.toISOString().split(/-|T|:|\./);
+            const nums = spanDate.toISOString().split(/[^\d]/);
 
             return units.map((item, index) => {
               let num = nums[index];
