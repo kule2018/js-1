@@ -1,3 +1,4 @@
+// 获取date字符函数
 function getDateStr(date) {
   if (!date instanceof Date) {
     throw '必须为Date';
@@ -73,7 +74,10 @@ getBeforeTime.defaults = {
 
 // 日期相关处理对象
 export default {
+  // 获取date字符函数
   getDateStr,
+  // 获取倒计时函数
   getTimespan,
+  // 获取多久以前函数
   getBeforeTime
 };
