@@ -18,12 +18,18 @@ function getTimespan(ts) {
 
 // 获取多久以前函数
 function getBeforeTime(opts = {}) {
+  // 如参数为日期
+  if (opts instanceof Date) {
+    opts = {
+      date: opts
+    };
+  }
   // 配置项
   opts = Object.assign({}, getBeforeTime.defaults, opts);
-  const {date, splitReg, units, type, rightNow} = opts;
+  const {date, splitReg, units, type, rightNow, ago} = opts;
 
   // 目标时间
-  if (!date instanceof Date) {
+  if (!(date instanceof Date)) {
     throw '必须为Date';
   }
 
@@ -44,8 +50,8 @@ function getBeforeTime(opts = {}) {
     // x年x月x天
     case 1: {
       return units.map((item, index) => {
-        return rsArray[index] + item;
-      }).join('');
+          return rsArray[index] + item;
+        }).join('') + ago;
     }
     // [年, 月, 日]
     case 2: {
@@ -61,7 +67,7 @@ function getBeforeTime(opts = {}) {
           break;
         }
       }
-      return rsStr;
+      return rsStr + ago;
     }
   }
 }
@@ -70,9 +76,11 @@ getBeforeTime.defaults = {
   // 年月日等单位信息
   units: ['年', '月', '天', '小时', '分', '秒'],
   // 返回数据类型(1: x年x月x天前, 2: [年, 月, 日], 3: x年前或者x月前)
-  type: 1,
+  type: 3,
   // 刚刚信息
-  rightNow: '刚刚'
+  rightNow: '刚刚',
+  // 以前信息
+  ago: '前'
 };
 
 
