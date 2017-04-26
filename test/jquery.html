@@ -1,0 +1,48 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>test</title>
+    <style type="text/css">
+        
+    </style>
+</head>
+
+<body>
+
+    <div id="div">
+        <p>0</p>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+    </div>
+    <script type="text/javascript">
+
+        var $ = (function () {
+
+            var $ = function (id) {
+                return new $.prototype.init(id);
+            };
+
+            $.prototype.init = function (id) {
+                this[0] = document.getElementById(id);
+            };
+            $.prototype.init.prototype = $.prototype;
+
+            return $;
+
+        })();
+
+        $.prototype.getTag = function (name) {
+            var els = this.el.getElementsByTagName(name);
+            for (var i = 0, len = els.length; i < len; i++) {
+                this[i] = els[i];
+            }
+            return this;
+        };
+
+        var divEl = $('div');
+    </script>
+</body>
+</html>

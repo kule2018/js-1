@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <style type="text/css">
+        .pi-card
+        {
+            height: 300px;
+            width: 600px;
+            position: relative;
+            -webkit-perspective: 1000;
+            perspective: 1000;
+        }
+
+
+        .pi-card div
+        {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            transform: scale3d(0.6, 0.6, 1);
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+
+        .pi-card .item1
+        {
+            transform-origin: 0 50%;
+            transform: scale3d(0.5, 0.5, 1) rotateY(60deg);
+        }
+
+
+        .pi-card .item3
+        {
+            transform-origin: 100% 50%;
+            transform: scale3d(0.5, 0.5, 1) rotateY(-60deg);
+        }
+    </style>
+
+</head>
+<body>
+    <div class="pi-card">
+        <div class="item1" style="background-image: url(http://img.gzsas.sohu.com/static/v1/jq/example/dist/img/1.jpg)"></div>
+        <div class="item2" style="background-image: url(http://img.gzsas.sohu.com/static/v1/jq/example/dist/img/2.jpg)"></div>
+        <div class="item3" style="background-image: url(http://img.gzsas.sohu.com/static/v1/jq/example/dist/img/3.jpg)"></div>
+    </div>
+    <!--<script type="text/javascript" src="http://img.gd.sohu.com/js/perftest.js"></script>-->
+    <script type="text/javascript" src="http://soneway.github.io/soneway/jq.js"></script>
+    <script type="text/javascript">
+        $('.pi-card').on();
+    </script>
+</body>
+</html>

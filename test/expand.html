@@ -1,64 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
-        <title>展开更多</title>
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
+        <!--<script type="text/javascript" src="http://100.84.47.149:9999/target/target-script-min.js#anonymous"></script>-->
+        <title>test</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+        <style type="text/css">
+            body {
+                line-height: 1.5;
             }
 
-            html, body {
-                width: 100%;
-                height: 100%;
-                font-size: 18px;
-                line-height: 1.4;
-            }
-
-            .wrapper {
-                position: relative;
-                width: 100%;
-                height: 250px;
-                padding: 20px;
-                box-sizing: border-box;
-            }
-
-            p {
-                width: 280px;
-                word-break: break-word; /* 处理英文截断换行 */
-            }
-
-            .text-slice {
+            .cmt_item {
+                max-height: 3em;
                 overflow: hidden;
-                -webkit-box-orient: vertical;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
+                margin: 40px 0;
             }
 
-            .expand-more {
-                display: inline-block;
-                width: 50px;
-                height: 30px;
-                color: blue;
+            .view_all {
+                display: none;
+                background: linear-gradient(to right, rgba(255, 255, 255, 0.5) 0%, #fff 20px);
+                padding-left: 20px;
+                color: #59f;
             }
 
-            #expand-check:checked + .text-slice {
-                overflow: auto;
-                display: block;
+            .expandable {
+                position: relative;
+            }
+
+            .expandable .view_all {
+                display: inline;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+
+            .expanded {
+                max-height: none;
+            }
+
+            .expanded .view_all {
+                display: none;
             }
         </style>
     </head>
     <body>
-        <div class="wrapper">
-            <h2>:checked伪类 + ~选择符</h2>
-            <input type="checkbox" id="expand-check" style="display: none;pointer-events: none;">
-            <p class="text-slice">
-                郑成月的经历就是一部中国社会历史！很有价值的！不管是社会研究还是真心纠错，都是非常好的案例。历史就是用各种个人经历写成的，那样就很有实在感。作家们没有素材？都在书写歌功颂德之文？想要把自己的作品流传后世，这就是最好的素材
-            </p>
-            <label class="expand-more" for="expand-check">更多</label>
+
+        <div class="cmt_item">
+            一潭死水臭熏天，腐女庸男荡里边。<br />
+            只肯自家谋福利，不为万户借方便。<br />
+            望财易把婪心起，观色难将泄欲填。<br />
+            送走红蝇来黑鼠，案头尽是鹤翩翩
+            <a class="view_all">查看全部</a>
         </div>
 
+        <div class="cmt_item">
+            这一伟大胜利，开辟了中华民族伟大复兴的光明前景，开启了古老中国凤凰涅槃、浴火重生的新征程。
+            <a class="view_all">查看全部</a>
+        </div>
+
+        <div class="cmt_item">
+            厂前明月光<br />
+            透过半裂窗<br />
+            十年尽沧桑<br />
+            低头暝思想<br />
+            地产是正纲<br />
+            实业不兴帮！
+            <a class="view_all">查看全部</a>
+        </div>
+
+        <div class="cmt_item">
+            某女被怀疑从事淫秽色情交易被警察盘问：那个男的是谁？<br />
+            答：干爹<br />
+            问：你经济来源？<br />
+            答：干爹<br />
+            问：你的工作？<br />
+            答：干爹<br />
+            警察大怒问：你还会别的吗？<br />
+            答：找干爹<br />
+            <a class="view_all">查看全部</a>
+        </div>
+
+        <div class="cmt_item">
+            中国人民抗日战争胜利，是近代以来中国抗击外敌入侵的第一次完全胜利。
+            <a class="view_all">查看全部</a>
+        </div>
+
+        <div class="cmt_item">
+            中国人民抗日战争胜利，是近代以来中国抗击外敌入侵的第一次完全胜利。<br>
+            这一伟大胜利，彻底粉碎了日本军国主义殖民奴役中国的图谋，洗刷了近代以来中国抗击外来侵略屡战屡败的民族耻辱。
+            <a class="view_all">查看全部</a>
+        </div>
+
+        <script type="text/javascript" src="https://soneway.github.io/jq/jq.js"></script>
+        <!--<script type="text/javascript" src="http://umsfrontend.test2.uae.uc.cn/sdk/uploader-develop-0.0.0-1.js"></script>-->
+        <script type="text/javascript">
+            function setScroll() {
+                $('.cmt_item').each(function () {
+                    var $this = $(this);
+                    this.scrollHeight > this.clientHeight ? $this.addClass('expandable') : $this.removeClass('expandable');
+                });
+            }
+
+            $(document).on('click', '.cmt_item', function (evt) {
+                if ($(evt.target).closest('.view_all').length) {
+                    $(this).addClass('expanded');
+                }
+            });
+
+            $(window).on('resize', function () {
+                setScroll();
+            }).trigger('resize');
+        </script>
     </body>
 </html>

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>test</title>
+    <style type="text/css">
+        *
+        {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!--<div id="div" class="bbb">
+        <p>0</p>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+    </div>-->
+    <!--<script type="text/data" id="div">
+        dafdfadfd
+    </script>-->
+    <!--<form id="form" name="form_n">
+        <input id="div" name="div_n" maxlength="12" class="sss" data-sss="sss" />
+    </form>-->
+    <!--<select id="div" multiple="multiple">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>-->
+    <button id="btn">点击</button>
+    adfad大饭店奔fdafadfad大饭店奔fdafadfad大饭店奔fdafadfad大饭店奔fdaf<br />
+    <textarea style="width: 100%; height: 300px;" id="textarea">adfad大饭店奔fdafadfad大饭店奔fdafadfad大饭店奔fdafadfad大饭店奔fdaf</textarea>
+    <!--jquery-->
+    <!--<script type="text/javascript" src="http://img.gd.sohu.com/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="http://img.gd.sohu.com/js/jquery/jquery.mousewheel.js"></script>-->
+    <script type="text/javascript">
+
+        function log(o) {
+            try {
+                console.log(o);
+            }
+            catch (e) {
+                alert(o);
+            }
+        }
+
+        function addEvent(el, type, fn) {
+            if (el.addEventListener) {
+                el.addEventListener(type, fn, false);
+            }
+            else {
+                el.attachEvent('on' + type, fn);
+            }
+        }
+
+        //IE9+,GC,FF支持getSelection(无法获取输入框中选中的内容,可用输入元素的selectionStart和selectionEnd来截取),IE10-支持createRange(可获取任意内容)
+        addEvent(document.getElementById('btn'), 'click', function () {
+            if (document.selection) {
+                log('createRange: ' + document.selection.createRange().text)
+            }
+            if (window.getSelection) {
+                var textareaEl = document.getElementById('textarea'),
+                    txt = window.getSelection() + '' || textareaEl.value.slice(textareaEl.selectionStart, textareaEl.selectionEnd);
+
+                log('getSelection: ' + txt);
+            }
+        });
+
+
+    </script>
+</body>
+</html>

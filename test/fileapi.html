@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>测试</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <style>
+        
+    </style>
+</head>
+<body>
+    <button id="btn">选择图片</button>
+    <form id="formid" enctype="multipart/form-data" style="visibility: hidden; position: absolute;">
+        <input type="file" name="file" id="file" multiple="multiple" accept="image/*" />
+    </form>
+    aaa
+    <script type="text/javascript" src="http://img.gzsas.sohu.com/js_src/proxy.js"></script>
+    <script type="text/javascript">
+        var fileEl = document.getElementById('file'),
+            btnEl = document.getElementById('btn'),
+            body = document.body;
+
+        btnEl.onclick = function () {
+            try {
+                fileEl.click();
+            }
+            catch (e) {
+                alert(e);
+            }
+        };
+
+
+        fileEl.onchange = function () {
+            Proxy.pic.upload({
+                formId: 'formid',
+                success: function (rs) {
+                    var img = document.createElement('img');
+
+                    img.src = 'http://img.gd.sohu.com/public/' + rs.data;
+                    body.appendChild(img);
+                }
+            });
+        };
+    </script>
+</body>
+</html>

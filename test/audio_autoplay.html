@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width,user-scalable=no"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <style type="text/css">
+
+    </style>
+
+</head>
+<body>
+    <!--autoplay
+    安卓: x5内核和uc支持,自带及chrome不支持
+    ios: 除qq内嵌浏览器支持,其他都不支持
+    -->
+    <audio id="auto" autoplay="autoplay" src="audio/0.mp3" controls="controls"></audio>
+    <script type="text/javascript" src="http://soneway.github.io/soneway/jq.js"></script>
+    <script type="text/javascript">
+        var autoEl = document.getElementById('auto');
+        $(document).on('touchstart', function () {
+            autoEl.play();
+        });
+    </script>
+</body>
+</html>

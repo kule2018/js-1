@@ -1,0 +1,303 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>test</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <style type="text/css">
+        body > div
+        {
+            padding: 0;
+            width: 200px;
+            height: 100px;
+            margin: 10px;
+            border: 1px solid #ccc;
+        }
+
+        /*body阴影*/
+        body:before
+        {
+            content: "";
+            position: fixed;
+            top: -5px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.7);
+            box-shadow: 0px 0px 5px rgba(0,0,0,.7);
+            z-index: 100;
+        }
+
+
+        /*content属性*/
+        #content
+        {
+        }
+
+            #content:before
+            {
+                /*content: attr(id);*/ /*id不能加引号*/
+                content: url(http://static.cnbetacdn.com/thumb/mini/article/2014/1103/177da16f3f69061_100x100.jpg); /*IE8+支持*/
+                width: 50px;
+                height: 50px;
+                display: block;
+                overflow: hidden;
+            }
+
+
+        /*文字渐变*/
+        #txt_jianbian
+        {
+            position: relative;
+        }
+
+            #txt_jianbian:after
+            {
+                content: attr(data-text);
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 9;
+                color: #ccc;
+                -webkit-mask-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); /*IE11-不支持mask-image*/
+            }
+
+
+        /*内阴影*/
+        #shadow_inset
+        {
+            -webkit-box-shadow: 0 0 5px 5px #888 inset; /*x位移, y位移, 阴影模糊距离, 阴影大小, 阴影颜色, 是否内阴影*/
+            box-shadow: 0 0 5px 5px #888 inset; /*IE9+支持*/
+        }
+
+
+        /*文字阴影*/
+        #shadow_text
+        {
+            text-shadow: 0 0 3px #888; /*IE10+支持*/ /*x位移, y位移, 阴影模糊距离, 阴影颜色*/
+        }
+
+
+        /*球形*/
+        #circle
+        {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%; /*IE9+支持*/
+            /*低版本webkit*/
+            background: -webkit-radial-gradient(100px 100px, circle cover, #5cabff, #000); /*中心点, 形状(circle | ellipse) 尺寸(closest-side | closest-corner | farthest-side | farthest-corner | contain | cover), color-stop*/
+            /*高版本webkit及css3标准*/
+            background: radial-gradient(300px 300px at 100px 100px, #5cabff, #000); /*IE10+支持*/ /*渐变大小(一个值表示正圆,两个值表示椭圆.如果容器是正方形的，那么渐变大小的默认值就是一个正圆。这个正圆的半径是圆心到容器最远角的距离) at 中心点, color-stop*/
+            position: relative;
+            -webkit-perspective: 1200;
+            -webkit-perspective-origin: 50% 50%;
+        }
+
+            #circle span
+            {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: -webkit-radial-gradient(50% 50%, circle, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);
+                background: radial-gradient(at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);
+                -webkit-transform: rotateX(80deg) translateZ(-150px);
+            }
+
+
+        /*渐变*/
+        #jiabian
+        {
+            /*低版本webkit*/
+            background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.5) 100%); /*起始点, color-stop*/
+            /*高版本webkit及css3标准*/
+            background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.5) 100%); /*IE10+支持*/ /*to 终点, color-stop*/
+        }
+
+
+        /*立方体*/
+        #cube
+        {
+            position: relative;
+            margin: 0 auto;
+            height: 400px;
+            width: 400px;
+            /*被转换的子元素是否保留其3D转换(flat:不保留|preserve-3d:保留)*/
+            -webkit-transform-style: preserve-3d; /*被转换的子元素保留其3D转换*/
+            transform-style: preserve-3d; /*IE11-不支持*/
+            margin: 200px;
+            /*定义3D元素距视图的距离，以像素计(none|number)*/
+            -webkit-perspective: none;
+            perspective: none;
+            /*3D 元素的基点位置(50% 50%|number number)*/
+            -webkit-perspective-origin: 50% 50%;
+            perspective-origin: 50% 50%;
+            /*动画效果(none 0 ease 0 1 normal)*/
+            -webkit-animation: cuberotate 4s linear .4s infinite normal; /*animation-name animation-duration animation-timing-function animation-delay animation-iteration-count animation-direction*/
+            animation: cuberotate 4s linear .4s infinite normal;
+        }
+
+        .face
+        {
+            position: absolute;
+            height: 400px;
+            width: 400px;
+        }
+
+            .face img
+            {
+                width: 100%;
+                height: 100%;
+            }
+
+        #cube .one
+        {
+            -webkit-transform: rotateX(90deg) translateZ(200px);
+            transform: rotateX(90deg) translateZ(200px);
+        }
+
+        #cube .two
+        {
+            -webkit-transform: translateZ(200px);
+            transform: translateZ(200px);
+        }
+
+        #cube .three
+        {
+            -webkit-transform: rotateY(90deg) translateZ(200px);
+            transform: rotateY(90deg) translateZ(200px);
+        }
+
+        #cube .four
+        {
+            -webkit-transform: rotateY(180deg) translateZ(200px);
+            transform: rotateY(180deg) translateZ(200px);
+        }
+
+        #cube .five
+        {
+            -webkit-transform: rotateY(-90deg) translateZ(200px);
+            transform: rotateY(-90deg) translateZ(200px);
+        }
+
+        #cube .six
+        {
+            -webkit-transform: rotateX(-90deg) translateZ(200px) rotate(180deg);
+            transform: rotateX(-90deg) translateZ(200px) rotate(180deg);
+        }
+
+        @-webkit-keyframes cuberotate
+        {
+            0%
+            {
+                -webkit-transform: rotate3d(0,0,0,0deg);
+            }
+
+            50%
+            {
+                -webkit-transform: rotate3d(0,1,0,180deg);
+            }
+
+            100%
+            {
+                -webkit-transform: rotate3d(0,1,0,360deg);
+            }
+        }
+
+        @keyframes cuberotate
+        {
+            0%
+            {
+                transform: rotate3d(0,0,0,0deg);
+            }
+
+            50%
+            {
+                transform: rotate3d(0,1,0,180deg);
+            }
+
+            100%
+            {
+                transform: rotate3d(0,1,0,360deg);
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="content">content属性</div>
+    <div id="txt_jianbian" data-text="文字渐变">文字渐变</div>
+    <div id="shadow_inset">内阴影</div>
+    <div id="shadow_text">文字阴影</div>
+    <div id="circle">
+        球形
+        <span></span>
+    </div>
+    <div id="jiabian">渐变</div>
+    <div id="cube">
+        <div class="face one">
+            <img src="images/1a.jpg" />
+        </div>
+        <div class="face two">
+            <img src="images/2a.jpg" />
+        </div>
+        <div class="face three">
+            <img src="images/3a.jpg" />
+        </div>
+        <div class="face four">
+            <img src="images/4a.jpg" />
+        </div>
+        <div class="face five">
+            <img src="images/5a.jpg" />
+        </div>
+        <div class="face six">
+            <img src="images/6a.jpg" />
+        </div>
+    </div>
+    <!--jquery-->
+    <!--<script type="text/javascript" src="http://img.gd.sohu.com/js/jqmobi/jq.js"></script>
+    <script type="text/javascript" src="http://img.gd.sohu.com/js/jqmobi/jq.desktopBrowsers.js"></script>-->
+    <script type="text/javascript">
+
+        function log(o) {
+            try {
+                console.log(o);
+            }
+            catch (e) {
+                alert(o);
+            }
+        }
+
+        function addEvent(el, type, fn) {
+            if (el.addEventListener) {
+                el.addEventListener(type, fn, false);
+            }
+            else {
+                el.attachEvent('on' + type, fn);
+            }
+        }
+
+        var cubeEl = document.getElementById('cube'),
+            sX, sY;
+
+        cubeEl.style.cssFloat = 'left';//IE9+及其他
+        cubeEl.style.styleFloat = 'left';//IE8-
+
+        cubeEl.addEventListener('touchstart', function (evt) {
+            var touch = evt.touches[0];
+            sX = touch.pageX;
+            sY = touch.pageY;
+        }, false);
+
+        cubeEl.addEventListener('touchmove', function (evt) {
+            var touch = evt.touches[0],
+                x = touch.pageX,
+                y = touch.pageY;
+
+            cubeEl.style.cssText = '-webkit-transform: rotateX(' + (x - sX) + 'deg) rotateY(' + (y - sY) + 'deg)';
+        }, false);
+
+    </script>
+</body>
+</html>

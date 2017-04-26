@@ -1,0 +1,80 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>test</title>
+    <style type="text/css">
+        *
+        {
+            padding: 0;
+            margin: 0;
+        }
+
+        #div
+        {
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="div">
+    </div>
+    <script type="text/javascript">
+
+        function log(o) {
+            try {
+                console.log(o);
+            }
+            catch (e) {
+                alert(o);
+            }
+        }
+
+        function addEvent(el, type, fn) {
+            if (el.addEventListener) {
+                el.addEventListener(type, fn, false);
+            }
+            else {
+                el.attachEvent('on' + type, fn);
+            }
+        }
+
+        function type(o) {
+            var t, c, n;
+
+            function classOf(o){
+                return {}.toString.call(o).slice(8,-1);
+            }
+
+            //null
+            if (o === null) {
+                return 'null';
+            }
+
+            //nan
+            if (o !== o) {
+                return 'nan';
+            }
+
+            //原始值和函数
+            if ((t = typeof o) !== 'object') {
+                return t;
+            }
+
+            //大多数内置对象
+            if ((c = classOf(o)) !== 'Object') {
+                return c;
+            }
+
+            //如果构造函数的名字存在的话
+            if (o.constructor && typeof o.constructor === 'function' && (n = o.constructor.getName())) {
+                return n;
+            }
+
+            return 'Object';
+
+        }
+
+    </script>
+</body>
+</html>

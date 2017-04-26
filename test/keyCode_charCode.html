@@ -1,0 +1,62 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>test</title>
+    <style type="text/css">
+        *
+        {
+            padding: 0;
+            margin: 0;
+        }
+
+        #div
+        {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            left: 300px;
+            top: 200px;
+            background: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body_area">
+        <div id="div">
+        </div>
+    </div>
+    <!--jquery-->
+    <script type="text/javascript" src="http://img.gd.sohu.com/js/jquery/jquery.js"></script>
+    <!--<script type="text/javascript" src="http://img.gd.sohu.com/js/jquery/jquery.mousewheel.js"></script>-->
+    <script type="text/javascript">
+
+        function log(o) {
+            try {
+                console.log(o);
+            }
+            catch (e) {
+                alert(o);
+            }
+        }
+
+        function addEvent(el, type, fn) {
+            if (el.addEventListener) {
+                el.addEventListener(type, fn, false);
+            }
+            else {
+                el.attachEvent('on' + type, fn);
+            }
+        }
+
+
+        //IE8-不支持charCode,GC和IE9+中keyCode和charCode值一样,FF中keyCode和charCode分别指代功能键(keyCode有值时charCode的值为0)和字符键的值(charCode有值时keyCode的值为0)
+        addEvent(document, 'keypress', function (evt) {
+            log('keyCode:' + evt.keyCode);
+            log('charCode:' + evt.charCode);
+        });
+
+
+    </script>
+</body>
+</html>

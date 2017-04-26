@@ -1,0 +1,112 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>test</title>
+    <style type="text/css">
+        *
+        {
+            padding: 0;
+            margin: 0;
+        }
+
+        #div
+        {
+            height: 2000px;
+            background: #ccc;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="div">
+        <div style="height: 5000px; width: 50px; background: #ddd;"></div>
+    </div>
+    <!--jquery-->
+    <script type="text/javascript" src="http://img.gd.sohu.com/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="http://img.gd.sohu.com/js/jquery/jquery.mousewheel.js"></script>
+    <script type="text/javascript">
+
+        function log(o) {
+            try {
+                console.log(o);
+            }
+            catch (e) {
+                alert(o);
+            }
+        }
+
+        function addEvent(el, type, fn) {
+            if (el.addEventListener) {
+                el.addEventListener(type, fn, false);
+            }
+            else {
+                el.attachEvent('on' + type, fn);
+            }
+        }
+
+        //var divEl = document.getElementById('div');
+
+        //addEvent(divEl, 'scroll', function (event) {
+        //    var evt = event || window.event,
+        //        target = evt.target || evt.srcElement;
+
+        //    evt.preventDefault ? evt.preventDefault() : evt.returnValue = false;
+
+        //    log(1);
+        //});
+
+        //var $div = $('#div');
+        //$div.on('mousewheel', function (evt, delta) {
+        //    if (this.scrollTop >= this.scrollHeight - $div.outerHeight()) {
+        //        delta < 0 && evt.preventDefault();
+        //    }
+        //    if (this.scrollTop <= 0) {
+        //        delta > 0 && evt.preventDefault();
+        //    }
+        //});
+
+
+        //绑定鼠标滚动事件函数
+        var bindWheel = (function () {
+            var bindWheel,
+                isFireFox = navigator.userAgent.indexOf('Firefox') !== -1;
+
+            bindWheel = function (el, fn) {
+                if (isFireFox) {
+                    el.addEventListener('DOMMouseScroll', function (evt) {
+                        fn.call(el, evt, evt.detail * -40);
+                    }, false);
+                }
+                else {
+                    if (el.addEventListener) {
+                        el.addEventListener('mousewheel', function (evt) {
+                            fn.call(el, evt, evt.wheelDelta);
+                        }, false);
+                    }
+                    else {
+                        el.attachEvent('onmousewheel', function (evt) {
+                            fn.call(el, evt, evt.wheelDelta);
+                        });
+                    }
+                }
+            };
+
+            return bindWheel;
+        })();
+
+        var divEl = document.getElementById('div');
+        bindWheel(divEl, function (evt, delta) {
+            //console.log('scrollTop:' + this.scrollTop + ' scrollHeight:' + this.scrollHeight + ' offsetHeight:' + this.offsetHeight + ' delta:' + delta);
+            if (this.scrollTop >= this.scrollHeight - this.offsetHeight) {
+                delta < 0 && (evt.preventDefault ? evt.preventDefault() : evt.returnValue = false);
+            }
+            if (this.scrollTop <= 0) {
+                delta > 0 && (evt.preventDefault ? evt.preventDefault() : evt.returnValue = true);
+            }
+        });
+
+    </script>
+</body>
+</html>

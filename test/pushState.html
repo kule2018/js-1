@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>测试</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div class="body_box">
+
+        </div>
+
+        <script type="text/javascript">
+          function pushState(title, url) {
+            history.pushState({title, url}, title, url);
+          }
+
+          window.addEventListener('statechange', function(e) {
+            if (history.state) {
+              const url = e.state.url;
+              console.log(url);
+            }
+          });
+
+        </script>
+    </body>
+</html>

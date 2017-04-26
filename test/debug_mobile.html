@@ -1,0 +1,49 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>
+    <script type="text/javascript" src="http://img.gd.sohu.com/js/debuggap.js"></script>
+    <title>test</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <style type="text/css">
+        
+    </style>
+</head>
+
+
+<body>
+
+    <!--jquery-->
+    <script type="text/javascript" src="http://img.gd.sohu.com/js/jquery/jquery.js"></script>
+    <!--perftest-->
+    <script type="text/javascript" src="http://img.gzsas.sohu.com/js_src/perftest.js"></script>
+    <!--<script type="text/javascript" src="http://img.gd.sohu.com/js/jqmobi/jq.desktopBrowsers.js"></script>-->
+    <script type="text/javascript">
+
+        function log(o) {
+            try {
+                console.log(o);
+            }
+            catch (e) {
+                alert(o);
+            }
+        }
+
+        function addEvent(el, type, fn) {
+            if (el.addEventListener) {
+                el.addEventListener(type, fn, false);
+            }
+            else {
+                el.attachEvent('on' + type, fn);
+            }
+        }
+
+        console.log('test');
+
+        //perfTest(function () {
+        //    $('.ddd');
+        //}, 9999);
+
+    </script>
+</body>
+</html>

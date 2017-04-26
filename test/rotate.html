@@ -1,0 +1,72 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>test</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <style type="text/css">
+        body
+        {
+            -webkit-perspective: 1000;
+            perspective: 1000;
+        }
+
+        .item
+        {
+            width: 300px;
+            height: 200px;
+            background: #f00;
+            -webkit-transform: rotate3d(0,1,0,45deg);
+            transform: rotate3d(0,1,0,45deg);
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="part2_1">
+        <div class="item"></div>
+    </div>
+    <!--jquery-->
+    <script type="text/javascript" src="http://img.gd.sohu.com/js/jqmobi/jq.js"></script>
+    <!--<script type="text/javascript" src="http://img.gd.sohu.com/js/jqmobi/jq.desktopBrowsers.js"></script>-->
+    <script type="text/javascript">
+
+
+        var $part2_1 = $('#part2_1'),
+            $items = $part2_1.find('.item'),
+            startX, startY,
+            swipSpan;
+
+        //旋转到函数
+        function rotate(swipSpan) {
+            transform = 'rotateY(' + swipSpan + 'deg)';
+            $items.css({
+                'transform': transform,
+                '-webkit-transform': transform
+            });
+        }
+
+        //触摸开始事件
+        $part2_1.on('touchstart', function (evt) {
+            var touch = evt.targetTouches[0];
+            //记录触摸开始位置
+            startX = touch.pageX;
+            startY = touch.pageY;
+        });
+
+        //触摸移动事件
+        $part2_1.on('touchmove', function (evt) {
+            var touch = evt.targetTouches[0],
+                swipSpanX = touch.pageX - startX,
+                swipSpanY = touch.pageY - startY;
+
+            //左右
+            if (Math.abs(swipSpanX) > Math.abs(swipSpanY)) {
+                evt.preventDefault();
+                rotate(swipSpan = swipSpanX);
+            }
+
+        });
+    </script>
+</body>
+</html>

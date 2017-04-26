@@ -1,0 +1,77 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>test</title>
+    <style type="text/css">
+        *
+        {
+            padding: 0;
+            margin: 0;
+        }
+
+        #div
+        {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            left: 300px;
+            top: 200px;
+            background: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body_area">
+        <div id="div" onclick="divClick(event)">
+        </div>
+    </div>
+    <!--jquery-->
+    <script type="text/javascript" src="http://img.gd.sohu.com/js/jquery/jquery.js"></script>
+    <!--<script type="text/javascript" src="http://img.gd.sohu.com/js/jquery/jquery.mousewheel.js"></script>-->
+    <script type="text/javascript">
+
+        function log(o) {
+            try {
+                console.log(o);
+            }
+            catch (e) {
+                alert(o);
+            }
+        }
+
+        function addEvent(el, type, fn) {
+            if (el.addEventListener) {
+                el.addEventListener(type, fn, false);
+            }
+            else {
+                el.attachEvent('on' + type, fn);
+            }
+        }
+
+        var divEl = document.getElementById('div');
+
+
+        ////onclick = "log(this)"中this指向当前对象
+        //这种在html属性中绑定的函数中this指向window对象
+        function divClick(me) {
+            log(me);
+            log('window对象' + (this === window));
+        }
+
+
+        ////this指向当前对象
+        //divEl.onclick = function () {
+        //    log('当前对象' + (this === divEl));
+        //};
+
+        ////IE8-this指向window对象,除此指向当前对象
+        //addEvent(divEl, 'click', function () {
+        //    log('当前对象' + (this === divEl));
+        //    log('window对象' + (this === window))
+        //});
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>test</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <style type="text/css">
+        #panel1
+        {
+            background: #f00;
+        }
+
+        #panel2
+        {
+            background: #ff0;
+        }
+
+        #panel3
+        {
+            background: #fff;
+        }
+
+        #panel4
+        {
+            background: #000;
+        }
+
+        #panel5
+        {
+            background: #0f0;
+        }
+
+        *
+        {
+            padding: 0;
+            margin: 0;
+        }
+
+        .body_area
+        {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            overflow: hidden;
+        }
+
+        .hidden
+        {
+            display: none;
+        }
+
+        .panel
+        {
+            background: inherit;
+            -webkit-overflow-scrolling: touch;
+            overflow: scroll;
+            overflow-x: hidden;
+            overflow-y: auto;
+            box-sizing: border-box;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            -webkit-transform: translate(100%, 0);
+            -moz-transform: translate(100%, 0);
+            -ms-transform: translate(100%, 0);
+            -o-transform: translate(100%, 0);
+            transform: translate(100%, 0);
+            -webkit-transition: -webkit-transform 0.4s ease;
+            transition: transform 0.4s ease;
+        }
+
+            .panel.opened
+            {
+                -webkit-transform: translate(0%, 0);
+                -moz-transform: translate(0%, 0);
+                -ms-transform: translate(0%, 0);
+                -o-transform: translate(0%, 0);
+                transform: translate(0%, 0);
+            }
+
+            .panel.subopened
+            {
+                -webkit-transform: translate(-30%, 0);
+                -moz-transform: translate(-30%, 0);
+                -ms-transform: translate(-30%, 0);
+                -o-transform: translate(-30%, 0);
+                transform: translate(-30%, 0);
+            }
+
+            .panel.current
+            {
+                z-index: 1;
+            }
+    </style>
+</head>
+
+
+<body>
+    <div class="body_area">
+        <div id="panel2" class="panel hidden">
+            panel2
+            <a href="#panel1">panel1</a>
+        </div>
+        <div id="panel1" class="panel opened current">
+            panel1
+            <a href="#panel2">panel2</a>
+        </div>
+        <div id="panel3" class="panel hidden">
+            panel3
+        </div>
+        <div id="panel4" class="panel hidden">
+            panel4
+        </div>
+        <div id="panel5" class="panel hidden">
+            panel5
+        </div>
+    </div>
+
+    <!--jquery-->
+    <script type="text/javascript" src="http://img.gd.sohu.com/js/jquery/jquery.js"></script>
+    <!--<script type="text/javascript" src="http://img.gd.sohu.com/js/jqmobi/jq.desktopBrowsers.js"></script>-->
+    <script type="text/javascript">
+        var $panels = $('.panel');
+
+        $(window).on('hashchange', function () {
+            var hash = location.hash,
+                $toShow = $(hash),
+                $toHidden = $panels.filter('.current');
+
+
+
+            if ($toShow.hasClass('subopened')) {
+                //隐藏
+                $toHidden.removeClass('opened');
+                setTimeout(function () {
+                    $toHidden.addClass('hidden').removeClass('current');
+                }, 400);
+
+                //显示
+                $toShow.removeClass('hidden');
+                setTimeout(function () {
+                    $toShow.addClass('current').removeClass('subopened');
+                }, 0);
+            }
+            else {
+                //隐藏
+                $toHidden.removeClass('current').addClass('subopened');
+                setTimeout(function () {
+                    $toHidden.addClass('hidden');
+                }, 400);
+
+                //显示
+                $toShow.removeClass('hidden');
+                setTimeout(function () {
+                    $toShow.addClass('current').addClass('opened');
+                }, 0);
+            }
+        });
+
+    </script>
+</body>
+</html>

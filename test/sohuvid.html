@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>测试</title>
+        <style>
+            iframe {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <iframe src="http://tech.hd.sohu.com/testh5/postmsg/iplay.html?&vid=83539568&autoplay=true&dlBanner=false&h5=true&hotVideo=false&infoPanel=false&t=2204dada1c756"></iframe>
+        <!--<iframe src="postMessage.html"></iframe>-->
+        <!--<script type="text/javascript" src="http://img.gd.sohu.com/js/jqmobi/jq.js"></script>-->
+        <script type="text/javascript">
+            window.addEventListener('message', function (e) {
+                console.log(e);
+            });
+        </script>
+    </body>
+</html>
