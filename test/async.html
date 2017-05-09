@@ -15,17 +15,20 @@
 
         <script type="text/javascript">
           function sleep(time) {
-            return new Promise(function(reslove) {
-              setTimeout(function() {
-                reslove('ok');
+            return new Promise((reslove) => {
+              console.log(`sleep ${time}`);
+              setTimeout(() => {
+                reslove(time);
               }, time);
             });
           }
 
           (async () => {
             console.log('start');
-            const rs = await sleep(3000);
-            console.log(rs);
+            const a = await sleep(200);
+            const b = await sleep(300);
+            const c = await Promise.all([sleep(400), sleep(500), sleep(600)]);
+            console.log(a, b, c);
           })();
         </script>
     </body>
