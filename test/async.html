@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>测试</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div class="body_box">
+
+        </div>
+
+        <script type="text/javascript">
+          function sleep(time) {
+            return new Promise(function(reslove) {
+              setTimeout(function() {
+                reslove('ok');
+              }, time);
+            });
+          }
+
+          (async () => {
+            console.log('start');
+            const rs = await sleep(3000);
+            console.log(rs);
+          })();
+        </script>
+    </body>
+</html>
