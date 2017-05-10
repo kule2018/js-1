@@ -10,4 +10,6 @@ window.addEventListener('unhandledrejection', function(err) {
 
 setTimeout(function() {
   console.log(aaa);
-}, 1000);
+}, 0);
+
+console.log(bbb);
