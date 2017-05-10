@@ -41,8 +41,9 @@
         // a.charset = 'utf-8',
         // a.async = !0,
         a.crossOrigin = 'anonymous',
-        a.src = t.p + '' + ({}[e] || e) + '.' + { 1: '524a877614ad4fb83532' }[e] + '.js',
-        a.src = 'http://100.84.243.49/github/js/test/err.1.js',
+        // a.src = t.p + '' + ({}[e] || e) + '.' + { 1: '524a877614ad4fb83532' }[e] + '.js',
+        // a.src = 'https://soneway.github.io/js/test/err.1.js',
+        a.src = 'http://image.uc.cn/s/uae/g/1y/weex/test/err.1.js',
         i.appendChild(a);
     }
   }

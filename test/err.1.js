@@ -4740,9 +4740,9 @@
           }
           var n = _Version
             , a = $("article");
-          console.log(hehehe),
             a.html(t(a.html(), e.query_tags)),
-            i()
+            i();
+          console.log(aaa);
         }
         function i() {
           var e = 2;
