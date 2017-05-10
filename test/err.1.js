@@ -4742,7 +4742,6 @@
             , a = $("article");
             a.html(t(a.html(), e.query_tags)),
             i();
-          console.log(aaa);
         }
         function i() {
           var e = 2;
@@ -5205,3 +5204,4 @@
       window.articleInit = i
   }
 ]);
+console.log(bbb);
