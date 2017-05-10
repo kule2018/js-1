@@ -5171,10 +5171,29 @@
           }
         }),
           window.onhashchange = hashchangeHandler
-      };
+      }
       setTimeout(function() {
         e();
-      },1000);
+      }, 1000),
+      $.ajax({
+        url: serverPathIflow + "/" + netWork["article-iflow"] + "/api/v1/article",
+        data: {
+          aid: '["' + c + '"]',
+          app: "uc-iflow",
+          uc_param_str: "dnnivebichfrmintcpgieiwidsudpf",
+          cid: d,
+          content_cnt: 1
+        },
+        type: "GET",
+        dataType: "jsonp",
+        jsonp: "callback",
+        success: $.proxy(function(t) {
+          // t && 0 === t.status && t.data.items[c] ? (l = t.data.items[c],
+          //   e()) : t && 0 === t.status && !t.data.items[c] && window.HideHeadVersion && $("header").show()
+        }, this),
+        error: $.proxy(function() {
+          i("网络错误")
+        }, this)
       }),
         _statRead.render.init(),
         $(document).on("click", "article img", function() {
