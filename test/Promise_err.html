@@ -16,23 +16,16 @@
         <script type="text/javascript">
 
           window.addEventListener('error', function(err) {
+            alert(err.message);
             console.log(err);
           });
 
           window.addEventListener('unhandledrejection', function(err) {
+            alert(err.message);
             console.log(err);
           });
 
-          var p = new Promise(function(ok, err) {
-            console.log(a);
-          });
-
-          p.then(function() {
-
-          });
-
-          console.log(b);
-
         </script>
+        <script type="text/javascript" src="http://image.uc.cn/s/uae/g/1y/weex/test/Promise_err.js"></script>
     </body>
 </html>
