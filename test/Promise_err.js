@@ -1,3 +1,13 @@
+window.addEventListener('error', function(err) {
+  alert(err.message);
+  console.log(err);
+});
+
+window.addEventListener('unhandledrejection', function(err) {
+  alert(err.message);
+  console.log(err);
+});
+
 function loadScript(url) {
   var scriptEl = document.createElement('script');
   scriptEl.type = 'text/javascript';
