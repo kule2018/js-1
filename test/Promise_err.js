@@ -2,6 +2,7 @@ function loadScript(url) {
   var scriptEl = document.createElement('script');
   scriptEl.type = 'text/javascript';
   scriptEl.src = url;
+  scriptEl.async = 'async';
   scriptEl.crossOrigin = 'anonymous';
   document.head.appendChild(scriptEl);
 }
