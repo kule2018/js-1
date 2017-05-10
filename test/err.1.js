@@ -5172,6 +5172,7 @@
         }),
           window.onhashchange = hashchangeHandler
       }
+      e();
       $.ajax({
         url: serverPathIflow + "/" + netWork["article-iflow"] + "/api/v1/article",
         data: {
