@@ -415,12 +415,12 @@
                                 <th>备注</th>
                                 <td>
                             <textarea data-field="remark" data-msg="备注"
-                                      placeholder="请在此填写您许愿中的TA的信息或其他需要悄悄告诉我们的话"></textarea>
+                                placeholder="请在此填写您许愿中的TA的信息或其他需要悄悄告诉我们的话"></textarea>
                                 </td>
                             </tr>
                         </table>
                         <p>
-                            <input type="checkbox" checked="checked" onclick="return false" />一旦提交，将不能更改，此信息关乎您中奖后派发奖品途径,请谨慎填写，确保无误！
+                            <input type="checkbox" checked="checked" onclick="return false;" />一旦提交，将不能更改，此信息关乎您中奖后派发奖品途径,请谨慎填写，确保无误！
                         </p>
                         <h4 class="center">
                             完善以下试驾信息，<br />
@@ -496,7 +496,7 @@
                             <a data-href="http://3g.k.sohu.com/t/h460049">环球86天</a>
                             <!--<a href="#panelwinnerlist">线下圆梦</a>-->
                             <a href="http://www.gac-toyota.com.cn/minisite/Campaigns/2015/camrylaunch"
-                               target="_blank">全新凯美瑞官网</a>
+                                target="_blank">全新凯美瑞官网</a>
                             <!--<a href="#paneldreamer">全球寻找凯美瑞</a>-->
                         </div>
                     </div>
@@ -527,11 +527,11 @@
                         <div class="other_login">
                             <p>其他登录方式：</p>
                             <div>
-                                <a onclick="jtool.otherLogin('qq')" class="qq"></a>
-                                <a onclick="jtool.otherLogin('sina')" class="sina"></a>
-                                <a onclick="jtool.otherLogin('renren')" class="renren"></a>
-                                <a onclick="jtool.otherLogin('baidu')" class="baidu"></a>
-                                <a onclick="jtool.otherLogin('taobao')" class="taobao"></a>
+                                <a onclick="jtool.otherLogin('qq');" class="qq"></a>
+                                <a onclick="jtool.otherLogin('sina');" class="sina"></a>
+                                <a onclick="jtool.otherLogin('renren');" class="renren"></a>
+                                <a onclick="jtool.otherLogin('baidu');" class="baidu"></a>
+                                <a onclick="jtool.otherLogin('taobao');" class="taobao"></a>
                             </div>
                         </div>
                     </div>
@@ -572,117 +572,117 @@
 
         <script type="text/javascript" src="perf.js"></script>
         <script type="text/javascript">
-            //根据id获取元素函数
-            function getElById(id) {
-                return document.getElementById(id);
+          //根据id获取元素函数
+          function getElById(id) {
+            return document.getElementById(id);
+          }
+
+          //加载js函数
+          function getScript(js, fn) {
+            var scriptEl = document.createElement('script');
+
+            scriptEl.type = 'text/javascript';
+            js && ( scriptEl.src = js);
+
+            scriptEl.onload = function() {
+              typeof fn === 'function' && fn();
+            };
+
+            document.head.appendChild(scriptEl);
+
+            return scriptEl;
+          }
+
+          //初始化预设加载库
+          var libChkEl = getElById('lib_chk'),
+            msgEl = getElById('msg'),
+            scripts = [],
+            forEach = scripts.forEach,
+            libs = [
+              ['http://soneway.github.io/jq/jq.js', 'http://www.zeptojs.cn/zepto.js', 'https://code.jquery.com/jquery-3.1.0.js']
+            ];
+
+          //预设库html
+          libChkEl.innerHTML = libs.map(function(jses, index) {
+            return '<div class="chk_item">' +
+              jses.map(function(js) {
+                return '<input id="' + js + '" data-index="' + index + '" data-js="' + js + '" type="radio" name="__radio_' + index + '"/>' +
+                  '<label for="' + js + '">' + js + '</label>';
+              }).join('') +
+              '</div>';
+          }).join('');
+
+          //切换预设库
+          libChkEl.addEventListener('click', function(evt) {
+            var target = evt.target;
+            if (target.tagName.toLowerCase() === 'input') {
+              var index = target.getAttribute('data-index'),
+                js = target.getAttribute('data-js'),
+                scriptEl = scripts[index];
+
+              if (js) {
+                msgEl.innerHTML = 'loading...';
+
+                //如已加载过script就remove
+                scriptEl && document.head.removeChild(scriptEl);
+
+                //加载js
+                scripts[index] = getScript(js, function() {
+                  msgEl.innerHTML = js + ' 已加载';
+                });
+              }
             }
+          }, false);
 
-            //加载js函数
-            function getScript(js, fn) {
-                var scriptEl = document.createElement('script');
+          //默认点击第一个(加载第一个js)
+          forEach.call(libChkEl.querySelectorAll('.chk_item>input:first-of-type'), function(item) {
+            item.click();
+          });
 
-                scriptEl.type = 'text/javascript';
-                js && ( scriptEl.src = js);
 
-                scriptEl.onload = function () {
-                    typeof fn === 'function' && fn();
-                };
+          //手动加载库
+          var btnLoadJsEl = getElById('btn_loadjs'),
+            txtJsEl = getElById('txt_js');
 
-                document.head.appendChild(scriptEl);
+          btnLoadJsEl.addEventListener('click', function() {
+            var js = txtJsEl.value;
 
-                return scriptEl;
+            if (js) {
+              msgEl.innerHTML = 'loading...';
+
+              //加载js
+              getScript(js, function() {
+                msgEl.innerHTML = js + ' 已加载';
+              });
             }
-
-            //初始化预设加载库
-            var libChkEl = getElById('lib_chk'),
-                    msgEl = getElById('msg'),
-                    scripts = [],
-                    forEach = scripts.forEach,
-                    libs = [
-                        ['http://soneway.github.io/jq/jq.js', 'http://www.zeptojs.cn/zepto.js', 'https://code.jquery.com/jquery-3.1.0.js']
-                    ];
-
-            //预设库html
-            libChkEl.innerHTML = libs.map(function (jses, index) {
-                return '<div class="chk_item">' +
-                        jses.map(function (js) {
-                            return '<input id="' + js + '" data-index="' + index + '" data-js="' + js + '" type="radio" name="__radio_' + index + '"/>' +
-                                    '<label for="' + js + '">' + js + '</label>';
-                        }).join('') +
-                        '</div>';
-            }).join('');
-
-            //切换预设库
-            libChkEl.addEventListener('click', function (evt) {
-                var target = evt.target;
-                if (target.tagName.toLowerCase() === 'input') {
-                    var index = target.getAttribute('data-index'),
-                            js = target.getAttribute('data-js'),
-                            scriptEl = scripts[index];
-
-                    if (js) {
-                        msgEl.innerHTML = 'loading...';
-
-                        //如已加载过script就remove
-                        scriptEl && document.head.removeChild(scriptEl);
-
-                        //加载js
-                        scripts[index] = getScript(js, function () {
-                            msgEl.innerHTML = js + ' 已加载';
-                        });
-                    }
-                }
-            }, false);
-
-            //默认点击第一个(加载第一个js)
-            forEach.call(libChkEl.querySelectorAll('.chk_item>input:first-of-type'), function (item) {
-                item.click();
-            });
+          }, false);
 
 
-            //手动加载库
-            var btnLoadJsEl = getElById('btn_loadjs'),
-                    txtJsEl = getElById('txt_js');
+          //run代码
+          var btnEl = getElById('btn'),
+            aEl = getElById('txt_a'),
+            bEl = getElById('txt_b'),
+            cEl = getElById('txt_c'),
+            countEl = getElById('txt_count');
 
-            btnLoadJsEl.addEventListener('click', function () {
-                var js = txtJsEl.value;
+          btnEl.addEventListener('click', function() {
+            msgEl.textContent = 'running...\n';
 
-                if (js) {
-                    msgEl.innerHTML = 'loading...';
+            setTimeout(function() {
+              var a = aEl.value,
+                b = bEl.value,
+                c = cEl.value,
+                count = countEl.value;
 
-                    //加载js
-                    getScript(js, function () {
-                        msgEl.innerHTML = js + ' 已加载';
-                    });
-                }
-            }, false);
+              a && perf(getFn(a), count, msgEl);
+              b && perf(getFn(b), count, msgEl);
+              c && perf(getFn(c), count, msgEl);
+            }, 100);
+          }, false);
 
-
-            //run代码
-            var btnEl = getElById('btn'),
-                    aEl = getElById('txt_a'),
-                    bEl = getElById('txt_b'),
-                    cEl = getElById('txt_c'),
-                    countEl = getElById('txt_count');
-
-            btnEl.addEventListener('click', function () {
-                msgEl.textContent = 'running...\n';
-
-                setTimeout(function () {
-                    var a = aEl.value,
-                            b = bEl.value,
-                            c = cEl.value,
-                            count = countEl.value;
-
-                    a && perf(getFn(a), count, msgEl);
-                    b && perf(getFn(b), count, msgEl);
-                    c && perf(getFn(c), count, msgEl);
-                }, 100);
-            }, false);
-
-            function getFn(str) {
-                return new Function(str);
-            }
+          function getFn(str) {
+            return new Function(str);
+          }
         </script>
     </body>
 </html>
