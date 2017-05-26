@@ -1,200 +1,201 @@
-(function (window) {
+// 获取uid函数
+const getUid = (() => {
+  let uid = 0;
+  return () => ++uid;
+})();
 
-    // 跨域请求对象
-    var jsonp = (function () {
+// 获取?或者&号
+function getSymbol(url) {
+  return url.indexOf('?') < 0 ? '?' : '&';
+}
 
-        var document = window.document,
-            encodeURIComponent = window.encodeURIComponent,
-            bodyEl = document.body,
-            headEl = document.head,
-            JSON = window.JSON;
+// 判断是否为function函数
+function isFunction(fn) {
+  return typeof fn === 'function';
+}
 
-        // 获取uid函数
-        var getUid = (function () {
-            var uid = 0;
-            return function () {
-                return ++uid;
-            }
-        })();
+// 加载js函数
+const getScript = (() => {
+  const headEl = document.head;
+  const jsReg = /(\.js)$/;
 
-        // 加载js函数
-        function getScript(url, fn) {
-            var isJs = /(\.js)$/.test(url),
-                scriptEl = document.createElement('script');
+  return (url, fn) => {
+    const isJs = jsReg.test(url);
+    const scriptEl = document.createElement('script');
 
-            // type
-            scriptEl.type = 'text/javascript';
+    // type
+    scriptEl.type = 'text/javascript';
 
-            // onload
-            scriptEl.onload = function () {
-                typeof fn === 'function' && fn();
-                !isJs && headEl.removeChild(scriptEl);
-            };
+    // onload
+    scriptEl.onload = () => {
+      isFunction(fn) && fn();
+      isJs || headEl.removeChild(scriptEl);
+    };
 
-            // 请求
-            scriptEl.src = url;
-            headEl.appendChild(scriptEl);
-        }
+    // onerror
+    scriptEl.onerror = (err) => {
+      isFunction(fn) && fn(err);
+    };
 
-        // 对象转查询字符串函数
-        function obj2str(obj) {
-            var array = [];
-            for (var p in obj) {
-                array.push(p + '=' + encodeURIComponent(obj[p]));
-            }
-            return array.join('&');
-        }
+    // 请求
+    scriptEl.src = url;
+    headEl.appendChild(scriptEl);
+  };
+})();
 
-        // 扩展函数
-        var extend = (function () {
-            var tmpArray = [],
-                forEach = tmpArray.forEach,
-                slice = tmpArray.slice;
+// get数据函数
+function get(opts) {
+  // 配置项
+  opts = Object.assign({}, get.defaults, opts);
+  let { url, data } = opts;
+  // callback可用于统计
+  const { success, error, callback } = opts;
 
-            return function (obj) {
-                // $.extend({}, defaults[, obj])
-                forEach.call(slice.call(arguments, 1), function (item) {
-                    for (var p in item) {
-                        obj[p] = item[p];
-                    }
-                });
-                return obj;
-            };
-        })();
+  // url判断
+  if (!url) {
+    return console.error('请求的url不能为空');
+  }
 
-        // 回调函数
-        function callback(rs, opts) {
-            //回调函数
-            var cb = opts.callback;
-            typeof cb === 'function' && cb(rs);
+  // 回调函数名
+  const cbName = `jsonpcb${getUid()}`;
 
-            //成功或失败回调函数
-            var success = opts.success,
-                error = opts.error;
-            rs.status === 200 ? typeof success === 'function' && success(rs.data) : typeof error === 'function' && error(rs.msg);
-        }
+  // 将回调函数添加到全局变量
+  window[cbName] = (rs) => {
+    // 回调
+    isFunction(success) && success(rs);
+    isFunction(callback) && callback(opts, rs);
+    // 释放回调函数
+    window[cbName] = null;
+  };
 
+  // url中添加callback
+  Object.assign(data || (data = {}), {
+    callback: cbName
+  });
 
-        // get数据函数
-        function get(opts) {
-            opts = extend({}, get.defaults, opts);
+  // 拼接data
+  if (data) {
+    url += getSymbol(url) + Object.keys(data).map((item) => `${item}=${encodeURIComponent(data[item])}`).join('&');
+  }
 
-            var cbName = 'jsonpcb' + getUid();
-
-            // 将回调函数添加到全局变量
-            window[cbName] = function (rs) {
-                // 回调
-                callback(rs, opts);
-
-                // 释放回调函数
-                window[cbName] = null;
-            };
-
-            // url中添加callback
-            var url = opts.url;
-            url += (url.indexOf('?') < 0 ? '?' : '&') + 'callback=' + cbName;
-
-            //拼接data
-            var data = opts.data;
-            data && (url += '&' + obj2str(data));
-
-            getScript(url);
-        }
-
-        // get数据默认配置项
-        get.defaults = {};
-
-
-        // push数据函数
-        var push = (function () {
-            // 回调函数对象
-            var msgcb = {};
-
-            // 绑定消息事件
-            window.addEventListener('message', function (evt) {
-                var data = JSON.parse(evt.data);
-                msgcb[data.id](data.rs);
-            }, false);
-
-            return function (opts) {
-                opts = extend({}, push.defaults, opts);
-
-                // iframe元素
-                var ifrId = 'jsonpifr' + getUid(), ifrEl,
-                    tmpEl = document.createElement('div');
-                tmpEl.innerHTML = '<iframe id="' + ifrId + '" name="' + ifrId + '" style="display: none;"></iframe>';
-                ifrEl = tmpEl.childNodes[0];
-                bodyEl.appendChild(ifrEl);
-
-                // 响应函数
-                msgcb[ifrId] = function (rs) {
-                    // 回调
-                    callback(JSON.parse(rs), opts);
-
-                    // 释放回调函数
-                    msgcb[ifrId] = null;
-
-                    // 删除节点
-                    bodyEl.removeChild(ifrEl);
-                    !formId && bodyEl.removeChild(formEl);
-                };
-
-                // form元素
-                var formId = opts.formId, formEl;
-                // 带file的form提交
-                if (formId) {
-                    formEl = document.getElementById(formId);
-                    formEl.enctype = 'multipart/form-data';
-                }
-                else {
-                    formEl = document.createElement('form');
-                    formEl.style.display = 'none';
-                }
-
-                // 请求的url
-                var url = opts.url;
-                formEl.action = url + (url.indexOf('?') !== -1 ? '&' : '?') + 'jsonp=' + ifrId;
-                formEl.method = opts.method;
-                formEl.target = ifrId;
-                //遍历data,加到form
-                var data = opts.data;
-                for (var p in data) {
-                    var inputEl = document.createElement('input');
-
-                    inputEl.type = 'hidden';
-                    inputEl.name = p;
-                    inputEl.value = data[p];
-                    formEl.appendChild(inputEl);
-                }
-
-                // 提交
-                !formId && bodyEl.appendChild(formEl);
-                formEl.submit();
-            };
-
-        })();
-
-        //push数据默认配置项
-        push.defaults = {
-            method: 'POST'
-        };
-
-
-        return {
-            getScript: getScript,
-            get: get,
-            push: push
-        };
-
-    })();
-
-
-    //CommonJS
-    if (typeof exports === 'object') {
-        return module.exports = jsonp;
+  // 发起请求
+  getScript(url, (err) => {
+    // js加载出错
+    if (err) {
+      // 回调
+      isFunction(error) && error(err);
+      isFunction(callback) && callback(opts);
+      // 释放回调函数
+      window[cbName] = null;
     }
+  });
+}
+// get数据默认配置项
+get.defaults = {};
 
-    //添加到全局
-    window.jsonp = jsonp;
 
-})(window);
+// post数据函数
+const post = (() => {
+  // 回调函数对象
+  const msgcb = {};
+  const bodyEl = document.body;
+  // 临时元素
+  const tmpEl = document.createElement('div');
+
+  // 绑定消息事件
+  window.addEventListener('message', (evt) => {
+    let { data } = evt;
+
+    // data转对象
+    typeof data === 'object' || (data = JSON.parse(data || null) || {});
+
+    // 回调函数
+    const callback = msgcb[data.id];
+    isFunction(callback) && callback(data.rs);
+  });
+
+  return (opts) => {
+    // 配置项
+    opts = Object.assign({}, post.defaults, opts);
+    const { success, error, callback, formSelector, url, method, data, enctype } = opts;
+
+    // iframe元素
+    const ifrId = `postifr${getUid()}`;
+    tmpEl.innerHTML = `<iframe name="${ifrId}" style="display: none;"></iframe>`;
+    const ifrEl = tmpEl.childNodes[0];
+    bodyEl.appendChild(ifrEl);
+
+    // form元素
+    let formEl;
+    // 页面中已存在的form提交
+    if (formSelector) {
+      formEl = document.querySelector(formSelector);
+      // 请求url中添加callback信息
+      const { action } = formEl;
+      formEl.action = `${action + getSymbol(action)}msgcb=${ifrId}`;
+    }
+    // 动态生成的form提交
+    else {
+      // 请求url
+      const action = `${url + getSymbol(url)}msgcb=${ifrId}`;
+      // 数据添加到form的input
+      const inputHtml = data && Object.keys(data).map((key) => `<input type="hidden" name="${key}" value="${data[key]}"/>`).join('');
+      tmpEl.innerHTML = `<form style="display: none;" method="${method}" action="${action}">${inputHtml}</form>`;
+      formEl = tmpEl.childNodes[0];
+    }
+    // target
+    formEl.target = ifrId;
+    // enctype
+    enctype && (formEl.enctype = enctype);
+
+    // message事件响应函数
+    msgcb[ifrId] = (rs) => {
+      // 回调
+      isFunction(success) && success(rs);
+      isFunction(callback) && callback(opts, rs);
+      // 释放回调函数
+      msgcb[ifrId] = null;
+
+      // 删除节点
+      bodyEl.removeChild(ifrEl);
+      formSelector || bodyEl.removeChild(formEl);
+    };
+
+    // iframe onload事件,主要处理请求失败
+    ifrEl.onload = () => {
+      // 延迟运行
+      setTimeout(() => {
+        // 如果回调还在,说明没有成功回调,即发生错误
+        if (msgcb[ifrId]) {
+          // 回调
+          isFunction(error) && error();
+          isFunction(callback) && callback(opts);
+          // 释放回调函数
+          msgcb[ifrId] = null;
+
+          // 删除节点
+          bodyEl.removeChild(ifrEl);
+          formSelector || bodyEl.removeChild(formEl);
+        }
+      }, 100);
+    };
+
+    // 提交
+    formSelector || bodyEl.appendChild(formEl);
+    formEl.submit();
+  };
+})();
+// post数据默认配置项
+post.defaults = {
+  method: 'POST'
+};
+
+
+export default {
+  // 加载js函数
+  getScript,
+  // get数据函数
+  get,
+  // post数据函数
+  post
+};

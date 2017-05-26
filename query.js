@@ -1,60 +1,46 @@
-﻿(function (window) {
+﻿const {Object, location, decodeURIComponent, encodeURIComponent} = window;
 
-    // 查询字符操作对象
-    var query = (function () {
-        var Object = window.Object,
-            location = window.location,
-            decodeURIComponent = window.decodeURIComponent,
-            encodeURIComponent = window.encodeURIComponent,
-            query = {
-                queryData: parse(),
-                getItem: getItem,
-                parse: parse,
-                stringify: stringify
-            };
+// 所有的查询字符对象
+const queryData = parse();
 
-        // 获取项
-        function getItem(key) {
-            if (!key) {
-                return;
-            }
-            return query.queryData[key];
-        }
+// 获取项
+function getItem(key) {
+  if (!key) {
+    return;
+  }
+  return queryData[key];
+}
 
-        // 查询字符转为对象
-        function parse(str) {
-            str || (str = location.search.slice(1));
+// 查询字符转为对象
+function parse(str) {
+  str || (str = location.search.slice(1));
 
-            var rs = {};
-            // 字符
-            if (typeof str === 'string' && str) {
-                str.split('&').forEach(function (item) {
-                    var kv = item.split('='),
-                        key = kv[0],
-                        val = kv[1];
-                    val !== undefined && (rs[key] = decodeURIComponent(val));
-                });
-            }
-            return rs;
-        }
+  const rs = {};
+  // 字符
+  if (typeof str === 'string' && str) {
+    str.split('&').forEach((item) => {
+      const kv = item.split('='),
+        key = kv[0],
+        val = kv[1];
+      val !== undefined && (rs[key] = decodeURIComponent(val));
+    });
+  }
+  return rs;
+}
 
-        // 对象转为查询字符
-        function stringify(obj) {
-            return Object.keys(obj).map(function (key) {
-                return key + '=' + encodeURIComponent(obj[key]);
-            }).join('&');
-        }
-
-        return query;
-    })();
+// 对象转为查询字符
+function stringify(obj) {
+  return Object.keys(obj).map((key) => {
+    return key + '=' + encodeURIComponent(obj[key]);
+  }).join('&');
+}
 
 
-    // CommonJS
-    if (typeof exports === 'object') {
-        return module.exports = query;
-    }
+// 查询字符处理类
+export default {
+  getItem,
+  parse,
+  stringify
+};
 
-    // 添加到全局
-    window.query = query;
-
-})(window);
+export {queryData};
