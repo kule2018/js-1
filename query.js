@@ -1,6 +1,4 @@
-﻿const {Object, location, decodeURIComponent, encodeURIComponent} = window;
-
-// 所有的查询字符对象
+﻿// 所有的查询字符对象
 const queryData = parse();
 
 // 获取项

@@ -1,5 +1,4 @@
-﻿const {localStorage, Date} = window;
-const {toString} = {};
+﻿const { toString } = {};
 // 过期时间前缀
 const expirePrefix = '_expire_';
 
