@@ -1,6 +1,6 @@
 // 获取date字符函数
 function getDateStr(date) {
-  if (!date instanceof Date) {
+  if (!(date instanceof Date)) {
     throw '必须为Date';
   }
 
