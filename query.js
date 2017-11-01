@@ -6,7 +6,7 @@ function getItem(key) {
   if (!key) {
     return;
   }
-  return queryData[key];
+  return parse()[key];
 }
 
 // 查询字符转为对象
@@ -17,9 +17,9 @@ function parse(str) {
   // 字符
   if (typeof str === 'string' && str) {
     str.split('&').forEach((item) => {
-      const kv = item.split('='),
-        key = kv[0],
-        val = kv[1];
+      const kv = item.split('=');
+      const key = kv[0];
+      const val = kv[1];
       val !== undefined && (rs[key] = decodeURIComponent(val));
     });
   }
@@ -41,4 +41,4 @@ export default {
   stringify
 };
 
-export {queryData};
+export { queryData };
